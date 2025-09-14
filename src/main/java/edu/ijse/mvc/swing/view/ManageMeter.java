@@ -48,7 +48,7 @@ ManageMeter extends javax.swing.JPanel {
         resetBtn = new javax.swing.JButton();
         meterTypeCmb = new javax.swing.JComboBox<>();
         statusCmb = new javax.swing.JComboBox<>();
-        datePicker = new com.toedter.calendar.JDateChooser();
+        datePicker = new de.wannawork.jcalendar.JCalendarComboBox();
 
         jPanel1.setBackground(new java.awt.Color(204, 255, 255));
         jPanel1.setPreferredSize(new java.awt.Dimension(1052, 768));
@@ -132,6 +132,11 @@ ManageMeter extends javax.swing.JPanel {
         meterTypeCmb.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Analog", "Digital" }));
 
         statusCmb.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Active", "Inactive" }));
+        statusCmb.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                statusCmbActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -250,20 +255,27 @@ ManageMeter extends javax.swing.JPanel {
         reset();
     }//GEN-LAST:event_resetBtnActionPerformed
 
+    private void statusCmbActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_statusCmbActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_statusCmbActionPerformed
+
     public void reset() {
         meterIdTxt.setText("");
-        meterTypeCmb.setSelectedIndex(0);
+        meterTypeCmb.setSelectedIndex(-1);
         datePicker.setDate(null);
-        statusCmb.setSelectedIndex(0);
+        statusCmb.setSelectedIndex(-1);
         locationTxt.setText("");
     }
 
     public void saveMeter() {
         try {
+            java.util.Date utilDate = datePicker.getDate();
+            java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
+
             MeterDto meterDto = new MeterDto(
                     meterIdTxt.getText(),
                     meterTypeCmb.getSelectedItem().toString(),
-                    datePicker
+                    sqlDate,
                     statusCmb.getSelectedItem().toString(),
                     locationTxt.getText()
             );
@@ -277,11 +289,13 @@ ManageMeter extends javax.swing.JPanel {
 
     public void updateMeter() {
         try {
+            java.util.Date utilDate = datePicker.getDate();
+            java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
 
             MeterDto meterDto = new MeterDto(
                     meterIdTxt.getText(),
                     meterTypeCmb.getSelectedItem().toString(),
-                    datePicker.getDate(),
+                    sqlDate,
                     statusCmb.getSelectedItem().toString(),
                     locationTxt.getText()
             );
@@ -305,7 +319,7 @@ ManageMeter extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel dateLabel;
-    private com.toedter.calendar.JDateChooser datePicker;
+    private de.wannawork.jcalendar.JCalendarComboBox datePicker;
     private javax.swing.JButton deleteBtn;
     private javax.swing.JLabel idLabel;
     private javax.swing.JPanel jPanel1;
