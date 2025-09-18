@@ -50,39 +50,39 @@
                       <Group type="102" attributes="0">
                           <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="titleLabel" min="-2" pref="367" max="-2" attributes="0"/>
                               <Component id="jScrollPane1" alignment="0" min="-2" pref="987" max="-2" attributes="0"/>
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Group type="102" alignment="0" attributes="0">
-                                          <Component id="recordLabel" min="-2" pref="145" max="-2" attributes="0"/>
+                                          <Component id="ratePerUnitLabel" min="-2" pref="145" max="-2" attributes="0"/>
                                           <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
-                                          <Component id="recordTxt" min="-2" pref="267" max="-2" attributes="0"/>
+                                          <Component id="ratePerTxt" min="-2" pref="267" max="-2" attributes="0"/>
                                       </Group>
                                       <Group type="102" alignment="0" attributes="0">
                                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                              <Component id="readingID" pref="146" max="32767" attributes="0"/>
-                                              <Component id="readingValueLabel" max="32767" attributes="0"/>
+                                              <Component id="ID" pref="146" max="32767" attributes="0"/>
+                                              <Component id="fromUnitLabel" max="32767" attributes="0"/>
                                           </Group>
                                           <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="readingValueTxt" alignment="0" min="-2" pref="267" max="-2" attributes="0"/>
-                                              <Component id="readingIDTxt" alignment="0" min="-2" pref="267" max="-2" attributes="0"/>
+                                              <Component id="fromUnitTxt" alignment="0" min="-2" pref="267" max="-2" attributes="0"/>
+                                              <Component id="idTxt" alignment="0" min="-2" pref="267" max="-2" attributes="0"/>
                                           </Group>
                                           <EmptySpace min="-2" pref="55" max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="dateLabel" min="-2" pref="145" max="-2" attributes="0"/>
-                                              <Component id="meterIDLabel" min="-2" pref="140" max="-2" attributes="0"/>
+                                              <Component id="toUnitLabel" min="-2" pref="145" max="-2" attributes="0"/>
+                                              <Component id="tariffIDLabel" min="-2" pref="140" max="-2" attributes="0"/>
                                           </Group>
                                           <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
-                                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                              <Component id="meterIDTxt" pref="267" max="32767" attributes="0"/>
-                                              <Component id="datePicker" max="32767" attributes="0"/>
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Component id="tariffIDTxt" min="-2" pref="267" max="-2" attributes="0"/>
+                                              <Component id="toUnitTxt" min="-2" pref="267" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
                                   </Group>
                               </Group>
-                              <Component id="titleLabel" alignment="0" min="-2" pref="449" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
@@ -108,27 +108,30 @@
                   <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
-                          <Component id="meterIDTxt" min="-2" pref="38" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
+                          <Component id="tariffIDTxt" min="-2" pref="38" max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="dateLabel" max="32767" attributes="0"/>
-                              <Component id="datePicker" max="32767" attributes="0"/>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace min="1" pref="1" max="-2" attributes="0"/>
+                                  <Component id="toUnitLabel" max="32767" attributes="0"/>
+                              </Group>
+                              <Component id="toUnitTxt" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                              <Component id="readingID" alignment="0" max="32767" attributes="0"/>
+                              <Component id="ID" alignment="0" max="32767" attributes="0"/>
                               <Group type="103" alignment="0" groupAlignment="3" attributes="0">
-                                  <Component id="readingIDTxt" alignment="3" min="-2" pref="38" max="-2" attributes="0"/>
-                                  <Component id="meterIDLabel" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
+                                  <Component id="idTxt" alignment="3" min="-2" pref="38" max="-2" attributes="0"/>
+                                  <Component id="tariffIDLabel" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="readingValueLabel" min="-2" pref="39" max="-2" attributes="0"/>
+                              <Component id="fromUnitLabel" min="-2" pref="39" max="-2" attributes="0"/>
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace min="1" pref="1" max="-2" attributes="0"/>
-                                  <Component id="readingValueTxt" min="-2" pref="38" max="-2" attributes="0"/>
+                                  <Component id="fromUnitTxt" min="-2" pref="38" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
@@ -136,8 +139,8 @@
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="recordTxt" alignment="3" min="-2" pref="38" max="-2" attributes="0"/>
-                      <Component id="recordLabel" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
+                      <Component id="ratePerTxt" alignment="3" min="-2" pref="38" max="-2" attributes="0"/>
+                      <Component id="ratePerUnitLabel" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
@@ -159,71 +162,78 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Liberation Sans" size="24" style="1"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Meter Reading Management System"/>
+            <Property name="text" type="java.lang.String" value="Tariff Slab Management System"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="readingID">
+        <Component class="javax.swing.JLabel" name="ID">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Liberation Sans" size="18" style="0"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Reading ID :"/>
+            <Property name="text" type="java.lang.String" value="ID :"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="readingIDTxt">
-          <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Liberation Sans" size="18" style="0"/>
-            </Property>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="meterIDLabel">
-          <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Liberation Sans" size="18" style="0"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="Meter ID :"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JTextField" name="meterIDTxt">
+        <Component class="javax.swing.JTextField" name="idTxt">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Liberation Sans" size="18" style="0"/>
             </Property>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="readingValueLabel">
+        <Component class="javax.swing.JLabel" name="tariffIDLabel">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Liberation Sans" size="18" style="0"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Reading Value :"/>
+            <Property name="text" type="java.lang.String" value="Tariff ID :"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="readingValueTxt">
+        <Component class="javax.swing.JTextField" name="tariffIDTxt">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Liberation Sans" size="18" style="0"/>
             </Property>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="dateLabel">
+        <Component class="javax.swing.JLabel" name="fromUnitLabel">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Liberation Sans" size="18" style="0"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Reading Date :"/>
+            <Property name="text" type="java.lang.String" value="From Unit :"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="recordLabel">
+        <Component class="javax.swing.JTextField" name="fromUnitTxt">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Liberation Sans" size="18" style="0"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Recorded By :"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="recordTxt">
+        <Component class="javax.swing.JLabel" name="toUnitLabel">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Liberation Sans" size="18" style="0"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="To Unit :"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="toUnitTxt">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Liberation Sans" size="18" style="0"/>
+            </Property>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="ratePerUnitLabel">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Liberation Sans" size="18" style="0"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Rate Per Unit : "/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="ratePerTxt">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Liberation Sans" size="18" style="0"/>
@@ -257,16 +267,22 @@
             <Component class="javax.swing.JTable" name="jTable1">
               <Properties>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                  <Table columnCount="5" rowCount="4">
-                    <Column editable="true" title="reading_id" type="java.lang.Object"/>
+                  <Table columnCount="6" rowCount="4">
+                    <Column editable="true" title="id" type="java.lang.Object"/>
                     <Column editable="true" title="meter_id" type="java.lang.Object"/>
-                    <Column editable="true" title="reading_value" type="java.lang.Object"/>
-                    <Column editable="true" title="reading_date" type="java.lang.Object"/>
-                    <Column editable="true" title="recorded_by" type="java.lang.Object"/>
+                    <Column editable="true" title="address" type="java.lang.Object"/>
+                    <Column editable="true" title="from_unit" type="java.lang.Object"/>
+                    <Column editable="true" title="to_unit" type="java.lang.Object"/>
+                    <Column editable="true" title="rate_per_unit" type="java.lang.Object"/>
                   </Table>
                 </Property>
                 <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
                   <TableColumnModel selectionModel="0">
+                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                      <Title/>
+                      <Editor/>
+                      <Renderer/>
+                    </Column>
                     <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
                       <Title/>
                       <Editor/>
@@ -352,8 +368,6 @@
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="resetBtnActionPerformed"/>
           </Events>
-        </Component>
-        <Component class="de.wannawork.jcalendar.JCalendarComboBox" name="datePicker">
         </Component>
       </SubComponents>
     </Container>

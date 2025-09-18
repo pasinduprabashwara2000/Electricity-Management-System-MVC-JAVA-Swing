@@ -39,6 +39,12 @@ public class ManageMainMenu extends javax.swing.JFrame {
         titleLabel = new javax.swing.JLabel();
         customerBtn = new javax.swing.JButton();
         meterBtn = new javax.swing.JButton();
+        meterReadingBtn = new javax.swing.JButton();
+        tariffBtn = new javax.swing.JButton();
+        tariffSlabBtn = new javax.swing.JButton();
+        invoiceBtn = new javax.swing.JButton();
+        paymentBtn = new javax.swing.JButton();
+        logOutBtn = new javax.swing.JButton();
         leftPanel = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -66,6 +72,60 @@ public class ManageMainMenu extends javax.swing.JFrame {
             }
         });
 
+        meterReadingBtn.setBackground(new java.awt.Color(51, 255, 0));
+        meterReadingBtn.setFont(new java.awt.Font("Liberation Sans", 1, 15)); // NOI18N
+        meterReadingBtn.setText("Manage Meter Reading");
+        meterReadingBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                meterReadingBtnActionPerformed(evt);
+            }
+        });
+
+        tariffBtn.setBackground(new java.awt.Color(51, 255, 0));
+        tariffBtn.setFont(new java.awt.Font("Liberation Sans", 1, 15)); // NOI18N
+        tariffBtn.setText("Manage Tariff");
+        tariffBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tariffBtnActionPerformed(evt);
+            }
+        });
+
+        tariffSlabBtn.setBackground(new java.awt.Color(51, 255, 0));
+        tariffSlabBtn.setFont(new java.awt.Font("Liberation Sans", 1, 15)); // NOI18N
+        tariffSlabBtn.setText("Manage Tariff Slab");
+        tariffSlabBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tariffSlabBtnActionPerformed(evt);
+            }
+        });
+
+        invoiceBtn.setBackground(new java.awt.Color(51, 255, 0));
+        invoiceBtn.setFont(new java.awt.Font("Liberation Sans", 1, 15)); // NOI18N
+        invoiceBtn.setText("Manage Invoice");
+        invoiceBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                invoiceBtnActionPerformed(evt);
+            }
+        });
+
+        paymentBtn.setBackground(new java.awt.Color(51, 255, 0));
+        paymentBtn.setFont(new java.awt.Font("Liberation Sans", 1, 15)); // NOI18N
+        paymentBtn.setText("Manage Payment");
+        paymentBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                paymentBtnActionPerformed(evt);
+            }
+        });
+
+        logOutBtn.setBackground(new java.awt.Color(255, 0, 51));
+        logOutBtn.setFont(new java.awt.Font("Liberation Sans", 1, 15)); // NOI18N
+        logOutBtn.setText("Log Out");
+        logOutBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                logOutBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout menuPanelLayout = new javax.swing.GroupLayout(menuPanel);
         menuPanel.setLayout(menuPanelLayout);
         menuPanelLayout.setHorizontalGroup(
@@ -78,7 +138,13 @@ public class ManageMainMenu extends javax.swing.JFrame {
                 .addGap(24, 24, 24)
                 .addGroup(menuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(customerBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(meterBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(meterBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(meterReadingBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tariffBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tariffSlabBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(invoiceBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(paymentBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(logOutBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(36, Short.MAX_VALUE))
         );
         menuPanelLayout.setVerticalGroup(
@@ -90,7 +156,19 @@ public class ManageMainMenu extends javax.swing.JFrame {
                 .addComponent(customerBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(meterBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(563, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(meterReadingBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(tariffBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(tariffSlabBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(invoiceBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(paymentBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(logOutBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(197, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout leftPanelLayout = new javax.swing.GroupLayout(leftPanel);
@@ -136,6 +214,30 @@ public class ManageMainMenu extends javax.swing.JFrame {
         loadUI("meter");
     }//GEN-LAST:event_meterBtnActionPerformed
 
+    private void meterReadingBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_meterReadingBtnActionPerformed
+        loadUI("meterReading");
+    }//GEN-LAST:event_meterReadingBtnActionPerformed
+
+    private void tariffBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tariffBtnActionPerformed
+        loadUI("tariff");
+    }//GEN-LAST:event_tariffBtnActionPerformed
+
+    private void tariffSlabBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tariffSlabBtnActionPerformed
+        loadUI("tariffSlab");
+    }//GEN-LAST:event_tariffSlabBtnActionPerformed
+
+    private void invoiceBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_invoiceBtnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_invoiceBtnActionPerformed
+
+    private void paymentBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_paymentBtnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_paymentBtnActionPerformed
+
+    private void logOutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logOutBtnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_logOutBtnActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -174,6 +276,12 @@ public class ManageMainMenu extends javax.swing.JFrame {
             case "meterReading" :
                 panelToLoad = new ManageMeterReading();
                 break;
+            case "tariff" :
+                panelToLoad = new ManageTariff();
+                break;
+            case "tariffSlab" :
+                panelToLoad = new ManageTariffSlab();
+                break;
         }
 
         if(panelToLoad != null){
@@ -186,9 +294,15 @@ public class ManageMainMenu extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton customerBtn;
+    private javax.swing.JButton invoiceBtn;
     private javax.swing.JPanel leftPanel;
+    private javax.swing.JButton logOutBtn;
     private javax.swing.JPanel menuPanel;
     private javax.swing.JButton meterBtn;
+    private javax.swing.JButton meterReadingBtn;
+    private javax.swing.JButton paymentBtn;
+    private javax.swing.JButton tariffBtn;
+    private javax.swing.JButton tariffSlabBtn;
     private javax.swing.JLabel titleLabel;
     // End of variables declaration//GEN-END:variables
 }

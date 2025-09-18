@@ -4,8 +4,8 @@
  */
 package edu.ijse.mvc.swing.view;
 
-import edu.ijse.mvc.swing.controller.CustomerController;
-import edu.ijse.mvc.swing.dto.CustomerDto;
+import edu.ijse.mvc.swing.controller.MeterReadingController;
+import edu.ijse.mvc.swing.dto.MeterReading;
 
 import javax.swing.*;
 
@@ -15,7 +15,7 @@ import javax.swing.*;
  */
 public class ManageMeterReading extends javax.swing.JPanel {
 
-    private final CustomerController customerController = new CustomerController();
+    private final MeterReadingController meterReadingController = new MeterReadingController();
 
     /**
      * Creates new form ManageCustomer
@@ -35,53 +35,51 @@ public class ManageMeterReading extends javax.swing.JPanel {
 
         jPanel1 = new javax.swing.JPanel();
         titleLabel = new javax.swing.JLabel();
-        customerID = new javax.swing.JLabel();
-        idTxt = new javax.swing.JTextField();
-        nameLabel = new javax.swing.JLabel();
-        nameTxt = new javax.swing.JTextField();
-        addressLabel = new javax.swing.JLabel();
-        addressTxt = new javax.swing.JTextField();
-        contactNo = new javax.swing.JLabel();
-        contactTxt = new javax.swing.JTextField();
-        emailLabel = new javax.swing.JLabel();
-        emailTxt = new javax.swing.JTextField();
+        readingID = new javax.swing.JLabel();
+        readingIDTxt = new javax.swing.JTextField();
+        meterIDLabel = new javax.swing.JLabel();
+        meterIDTxt = new javax.swing.JTextField();
+        readingValueLabel = new javax.swing.JLabel();
+        readingValueTxt = new javax.swing.JTextField();
+        dateLabel = new javax.swing.JLabel();
+        recordLabel = new javax.swing.JLabel();
+        recordTxt = new javax.swing.JTextField();
         saveBtn = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         updateBtn = new javax.swing.JButton();
         deleteBtn = new javax.swing.JButton();
         resetBtn = new javax.swing.JButton();
+        datePicker = new de.wannawork.jcalendar.JCalendarComboBox();
 
         jPanel1.setBackground(new java.awt.Color(204, 255, 255));
         jPanel1.setPreferredSize(new java.awt.Dimension(1052, 768));
 
         titleLabel.setFont(new java.awt.Font("Liberation Sans", 1, 24)); // NOI18N
-        titleLabel.setText("Customer Management System");
+        titleLabel.setText("Meter Reading Management System");
 
-        customerID.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
-        customerID.setText("Customer ID :");
+        readingID.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
+        readingID.setText("Reading ID :");
 
-        idTxt.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
+        readingIDTxt.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
 
-        nameLabel.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
-        nameLabel.setText("Name :");
+        meterIDLabel.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
+        meterIDLabel.setText("Meter ID :");
 
-        nameTxt.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
+        meterIDTxt.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
 
-        addressLabel.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
-        addressLabel.setText("Address :");
+        readingValueLabel.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
+        readingValueLabel.setText("Reading Value :");
 
-        addressTxt.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
+        readingValueTxt.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
 
-        contactNo.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
-        contactNo.setText("Contact No :");
+        dateLabel.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
+        dateLabel.setText("Reading Date :");
 
-        contactTxt.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
+        recordLabel.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
+        recordLabel.setText("Recorded By :");
 
-        emailLabel.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
-        emailLabel.setText("Email : ");
-
-        emailTxt.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
+        recordTxt.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
 
         saveBtn.setBackground(new java.awt.Color(0, 102, 204));
         saveBtn.setFont(new java.awt.Font("Liberation Sans", 1, 15)); // NOI18N
@@ -101,7 +99,7 @@ public class ManageMeterReading extends javax.swing.JPanel {
                 {null, null, null, null, null}
             },
             new String [] {
-                "id", "name", "address", "contact", "email"
+                "reading_id", "meter_id", "reading_value", "reading_date", "recorded_by"
             }
         ));
         jTable1.setRowHeight(25);
@@ -146,31 +144,31 @@ public class ManageMeterReading extends javax.swing.JPanel {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(25, 25, 25)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(titleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 367, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 987, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(20, 20, 20)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(emailLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(recordLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(1, 1, 1)
-                                        .addComponent(emailTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(recordTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(customerID, javax.swing.GroupLayout.DEFAULT_SIZE, 146, Short.MAX_VALUE)
-                                            .addComponent(addressLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                            .addComponent(readingID, javax.swing.GroupLayout.DEFAULT_SIZE, 146, Short.MAX_VALUE)
+                                            .addComponent(readingValueLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                         .addGap(1, 1, 1)
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(addressTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(idTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addComponent(readingValueTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(readingIDTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addGap(55, 55, 55)
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(contactNo, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(nameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addComponent(dateLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(meterIDLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addGap(1, 1, 1)
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(nameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(contactTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(meterIDTxt, javax.swing.GroupLayout.DEFAULT_SIZE, 267, Short.MAX_VALUE)
+                                            .addComponent(datePicker, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                            .addComponent(titleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 449, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(188, 188, 188)
                         .addComponent(saveBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -190,30 +188,28 @@ public class ManageMeterReading extends javax.swing.JPanel {
                 .addGap(30, 30, 30)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(nameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addComponent(meterIDTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(19, 19, 19)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(1, 1, 1)
-                                .addComponent(contactNo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addComponent(contactTxt)))
+                            .addComponent(dateLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(datePicker, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(customerID, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(readingID, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(idTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(nameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(readingIDTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(meterIDLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(addressLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(readingValueLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(1, 1, 1)
-                                .addComponent(addressTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(readingValueTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(emailTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(emailLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(recordTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(recordLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(29, 29, 29)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(saveBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -242,7 +238,7 @@ public class ManageMeterReading extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void saveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBtnActionPerformed
-        saveCustomer();
+        saveMeterReading();
     }//GEN-LAST:event_saveBtnActionPerformed
 
     private void updateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateBtnActionPerformed
@@ -258,38 +254,32 @@ public class ManageMeterReading extends javax.swing.JPanel {
     }//GEN-LAST:event_resetBtnActionPerformed
 
     public void reset() {
-        idTxt.setText("");
-        nameTxt.setText("");
-        addressTxt.setText("");
-        contactTxt.setText("");
-        emailTxt.setText("");
+        readingIDTxt.setText("");
+        meterIDTxt.setText("");
+        readingValueTxt.setText("");
+        datePicker.setDate(null);
+        recordTxt.setText("");
     }
 
-    public void saveCustomer() {
-        try {
-            CustomerDto customerDto = new CustomerDto(
-                    idTxt.getText(),
-                    nameTxt.getText(),
-                    addressTxt.getText(),
-                    Integer.parseInt(contactTxt.getText()),
-                    emailTxt.getText()
-            );
-            String rsp = customerController.addCustomer(customerDto);
-            JOptionPane.showMessageDialog(this, rsp);
-            reset();
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, e.getMessage());
-        }
+    public void saveMeterReading() {
+        MeterReading meterReading =new MeterReading(
+          readingIDTxt.getText(),
+          meterIDTxt.getText(),
+          Integer.parseInt(readingValueTxt.getText()),
+          datePicker.getDate(),
+          recordTxt.getText()
+        );
+        String rsp = meterReadingController
     }
 
     public void updateCustomer() {
         try {
             CustomerDto customerDto = new CustomerDto(
-                    idTxt.getText(),
-                    nameTxt.getText(),
-                    addressTxt.getText(),
+                    readingIDTxt.getText(),
+                    meterIDTxt.getText(),
+                    readingValueTxt.getText(),
                     Integer.parseInt(contactTxt.getText()),
-                    emailTxt.getText()
+                    recordTxt.getText()
             );
             String rsp = customerController.updateCustomer(customerDto);
             JOptionPane.showMessageDialog(this, rsp);
@@ -301,7 +291,7 @@ public class ManageMeterReading extends javax.swing.JPanel {
 
     public void deleteCustomer() {
         try {
-            String id = idTxt.getText();
+            String id = readingIDTxt.getText();
             String rsp = customerController.deleteCustomer(id);
             JOptionPane.showMessageDialog(this, rsp);
             reset();
@@ -311,20 +301,20 @@ public class ManageMeterReading extends javax.swing.JPanel {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel addressLabel;
-    private javax.swing.JTextField addressTxt;
-    private javax.swing.JLabel contactNo;
-    private javax.swing.JTextField contactTxt;
-    private javax.swing.JLabel customerID;
+    private javax.swing.JLabel dateLabel;
+    private de.wannawork.jcalendar.JCalendarComboBox datePicker;
     private javax.swing.JButton deleteBtn;
-    private javax.swing.JLabel emailLabel;
-    private javax.swing.JTextField emailTxt;
-    private javax.swing.JTextField idTxt;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JLabel nameLabel;
-    private javax.swing.JTextField nameTxt;
+    private javax.swing.JLabel meterIDLabel;
+    private javax.swing.JTextField meterIDTxt;
+    private javax.swing.JLabel readingID;
+    private javax.swing.JTextField readingIDTxt;
+    private javax.swing.JLabel readingValueLabel;
+    private javax.swing.JTextField readingValueTxt;
+    private javax.swing.JLabel recordLabel;
+    private javax.swing.JTextField recordTxt;
     private javax.swing.JButton resetBtn;
     private javax.swing.JButton saveBtn;
     private javax.swing.JLabel titleLabel;

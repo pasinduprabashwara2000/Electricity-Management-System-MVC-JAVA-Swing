@@ -12,7 +12,6 @@ import java.sql.Date;
 public class InvoiceDto {
 
     private String id;
-    private String invoiceNumber;
     private String customerID;
     private String meterID;
     private Date periodStart;

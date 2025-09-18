@@ -17,16 +17,18 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
+              <EmptySpace max="-2" attributes="0"/>
               <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
+              <EmptySpace max="-2" attributes="0"/>
               <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -46,54 +48,61 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" attributes="0">
-                          <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jScrollPane1" alignment="0" min="-2" pref="987" max="-2" attributes="0"/>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Component id="titleLabel" min="-2" pref="367" max="-2" attributes="0"/>
+                      <Component id="jScrollPane1" alignment="0" min="-2" pref="987" max="-2" attributes="0"/>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="invoiceIDLabel" alignment="0" min="-2" pref="146" max="-2" attributes="0"/>
+                              <Component id="periodStartLabel" alignment="0" pref="149" max="32767" attributes="0"/>
+                              <Component id="statusLabel" alignment="0" max="32767" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" pref="335" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Group type="102" attributes="0">
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <Component id="recordLabel" min="-2" pref="145" max="-2" attributes="0"/>
-                                          <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
-                                          <Component id="recordTxt" min="-2" pref="267" max="-2" attributes="0"/>
-                                      </Group>
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                              <Component id="readingID" pref="146" max="32767" attributes="0"/>
-                                              <Component id="readingValueLabel" max="32767" attributes="0"/>
-                                          </Group>
-                                          <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
-                                          <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="readingValueTxt" alignment="0" min="-2" pref="267" max="-2" attributes="0"/>
-                                              <Component id="readingIDTxt" alignment="0" min="-2" pref="267" max="-2" attributes="0"/>
-                                          </Group>
-                                          <EmptySpace min="-2" pref="55" max="-2" attributes="0"/>
-                                          <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="dateLabel" min="-2" pref="145" max="-2" attributes="0"/>
-                                              <Component id="meterIDLabel" min="-2" pref="140" max="-2" attributes="0"/>
-                                          </Group>
-                                          <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
-                                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                              <Component id="meterIDTxt" pref="267" max="32767" attributes="0"/>
-                                              <Component id="datePicker" max="32767" attributes="0"/>
-                                          </Group>
-                                      </Group>
+                                      <Component id="customerIDLabel" min="-2" pref="155" max="-2" attributes="0"/>
+                                      <Component id="periodEndLabel" min="-2" pref="155" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="1" attributes="0">
+                                      <Component id="CustomerIDTxt" min="-2" pref="246" max="-2" attributes="0"/>
+                                      <Component id="endDatePicker" min="-2" pref="246" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
-                              <Component id="titleLabel" alignment="0" min="-2" pref="449" max="-2" attributes="0"/>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                      <Component id="jLabel1" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="unitsLabel" alignment="0" max="32767" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                  <Component id="unitsTxt" max="32767" attributes="0"/>
+                              </Group>
                           </Group>
                       </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="188" max="-2" attributes="0"/>
-                          <Component id="saveBtn" min="-2" pref="151" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
-                          <Component id="updateBtn" min="-2" pref="151" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
-                          <Component id="deleteBtn" min="-2" pref="151" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
-                          <Component id="resetBtn" min="-2" pref="151" max="-2" attributes="0"/>
+                      <Group type="102" alignment="1" attributes="0">
+                          <Component id="meterIDLabel" min="-2" pref="146" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="invoiceIDTxt" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="startDatePicker" max="32767" attributes="0"/>
+                                  <Component id="materIDTxt" max="32767" attributes="0"/>
+                                  <Component id="statusPicker" alignment="1" min="-2" pref="267" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" attributes="0">
+                                  <Component id="saveBtn" min="-2" pref="151" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
+                                  <Component id="updateBtn" min="-2" pref="151" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
+                                  <Component id="deleteBtn" min="-2" pref="151" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
+                                  <Component id="resetBtn" min="-2" pref="151" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <EmptySpace min="-2" pref="131" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace pref="40" max="32767" attributes="0"/>
@@ -107,47 +116,60 @@
                   <Component id="titleLabel" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
-                          <Component id="meterIDTxt" min="-2" pref="38" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
+                      <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="dateLabel" max="32767" attributes="0"/>
-                              <Component id="datePicker" max="32767" attributes="0"/>
-                          </Group>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                              <Component id="readingID" alignment="0" max="32767" attributes="0"/>
+                              <Component id="invoiceIDLabel" alignment="0" min="-2" pref="38" max="-2" attributes="0"/>
                               <Group type="103" alignment="0" groupAlignment="3" attributes="0">
-                                  <Component id="readingIDTxt" alignment="3" min="-2" pref="38" max="-2" attributes="0"/>
-                                  <Component id="meterIDLabel" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
+                                  <Component id="CustomerIDTxt" alignment="3" min="-2" pref="38" max="-2" attributes="0"/>
+                                  <Component id="customerIDLabel" alignment="3" min="-2" pref="39" max="-2" attributes="0"/>
                               </Group>
+                          </Group>
+                          <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="unitsTxt" max="32767" attributes="0"/>
+                              <Group type="102" attributes="0">
+                                  <Component id="meterIDLabel" min="-2" pref="39" max="-2" attributes="0"/>
+                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                              </Group>
+                              <Component id="unitsLabel" alignment="0" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="readingValueLabel" min="-2" pref="39" max="-2" attributes="0"/>
+                              <Component id="endDatePicker" alignment="1" max="32767" attributes="0"/>
                               <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace min="1" pref="1" max="-2" attributes="0"/>
-                                  <Component id="readingValueTxt" min="-2" pref="38" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="1" attributes="0">
+                                      <Component id="startDatePicker" alignment="1" min="-2" pref="38" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="3" attributes="0">
+                                          <Component id="periodStartLabel" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
+                                          <Component id="periodEndLabel" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                               </Group>
                           </Group>
-                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="statusLabel" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
+                              <Component id="jLabel1" alignment="3" min="-2" pref="41" max="-2" attributes="0"/>
+                              <Component id="statusPicker" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" pref="63" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" attributes="0">
+                          <Component id="invoiceIDTxt" min="-2" pref="38" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
+                          <Component id="materIDTxt" min="-2" pref="39" max="-2" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="recordTxt" alignment="3" min="-2" pref="38" max="-2" attributes="0"/>
-                      <Component id="recordLabel" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="saveBtn" alignment="3" min="-2" pref="38" max="-2" attributes="0"/>
                       <Component id="updateBtn" alignment="3" min="-2" pref="38" max="-2" attributes="0"/>
                       <Component id="deleteBtn" alignment="3" min="-2" pref="38" max="-2" attributes="0"/>
                       <Component id="resetBtn" alignment="3" min="-2" pref="38" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
-                  <Component id="jScrollPane1" min="-2" pref="662" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
+                  <Component id="jScrollPane1" min="-2" pref="628" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -159,22 +181,40 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Liberation Sans" size="24" style="1"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Meter Reading Management System"/>
+            <Property name="text" type="java.lang.String" value="Invoice Management System"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="readingID">
+        <Component class="javax.swing.JLabel" name="invoiceIDLabel">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Liberation Sans" size="18" style="0"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Reading ID :"/>
+            <Property name="text" type="java.lang.String" value="Invoice ID :"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="readingIDTxt">
+        <Component class="javax.swing.JTextField" name="invoiceIDTxt">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Liberation Sans" size="18" style="0"/>
             </Property>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="invoiceIDTxtActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JTextField" name="CustomerIDTxt">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Liberation Sans" size="18" style="0"/>
+            </Property>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="customerIDLabel">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Liberation Sans" size="18" style="0"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Customer ID :"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="meterIDLabel">
@@ -185,49 +225,19 @@
             <Property name="text" type="java.lang.String" value="Meter ID :"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="meterIDTxt">
+        <Component class="javax.swing.JTextField" name="unitsTxt">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Liberation Sans" size="18" style="0"/>
             </Property>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="readingValueLabel">
+        <Component class="javax.swing.JLabel" name="periodStartLabel">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Liberation Sans" size="18" style="0"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Reading Value :"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JTextField" name="readingValueTxt">
-          <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Liberation Sans" size="18" style="0"/>
-            </Property>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="dateLabel">
-          <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Liberation Sans" size="18" style="0"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="Reading Date :"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="recordLabel">
-          <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Liberation Sans" size="18" style="0"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="Recorded By :"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JTextField" name="recordTxt">
-          <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Liberation Sans" size="18" style="0"/>
-            </Property>
+            <Property name="text" type="java.lang.String" value="Period Start : "/>
           </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="saveBtn">
@@ -258,11 +268,11 @@
               <Properties>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                   <Table columnCount="5" rowCount="4">
-                    <Column editable="true" title="reading_id" type="java.lang.Object"/>
-                    <Column editable="true" title="meter_id" type="java.lang.Object"/>
-                    <Column editable="true" title="reading_value" type="java.lang.Object"/>
-                    <Column editable="true" title="reading_date" type="java.lang.Object"/>
-                    <Column editable="true" title="recorded_by" type="java.lang.Object"/>
+                    <Column editable="true" title="id" type="java.lang.Object"/>
+                    <Column editable="true" title="name" type="java.lang.Object"/>
+                    <Column editable="true" title="address" type="java.lang.Object"/>
+                    <Column editable="true" title="contact" type="java.lang.Object"/>
+                    <Column editable="true" title="email" type="java.lang.Object"/>
                   </Table>
                 </Property>
                 <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
@@ -353,7 +363,69 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="resetBtnActionPerformed"/>
           </Events>
         </Component>
-        <Component class="de.wannawork.jcalendar.JCalendarComboBox" name="datePicker">
+        <Component class="javax.swing.JLabel" name="periodEndLabel">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Liberation Sans" size="18" style="0"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Period End : "/>
+          </Properties>
+        </Component>
+        <Component class="de.wannawork.jcalendar.JCalendarComboBox" name="startDatePicker">
+        </Component>
+        <Component class="de.wannawork.jcalendar.JCalendarComboBox" name="endDatePicker">
+        </Component>
+        <Component class="javax.swing.JLabel" name="unitsLabel">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Liberation Sans" size="18" style="0"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Consumption Units :"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="materIDTxt">
+          <Properties>
+            <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+              <Dimension value="[64, 28]"/>
+            </Property>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="statusLabel">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Liberation Sans" size="18" style="0"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Status"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JComboBox" name="statusPicker">
+          <Properties>
+            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+              <StringArray count="10">
+                <StringItem index="0" value="Draft "/>
+                <StringItem index="1" value="Pending / Open"/>
+                <StringItem index="2" value="Sent / Issued"/>
+                <StringItem index="3" value="Partially Paid"/>
+                <StringItem index="4" value="Paid"/>
+                <StringItem index="5" value="Overdue / Past Due"/>
+                <StringItem index="6" value="Cancelled / Voided"/>
+                <StringItem index="7" value="Rejected / Disputed"/>
+                <StringItem index="8" value="Refunded / Credited"/>
+                <StringItem index="9" value="Written Off"/>
+              </StringArray>
+            </Property>
+          </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+          </AuxValues>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabel1">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Liberation Sans" size="18" style="0"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Total Amount :"/>
+          </Properties>
         </Component>
       </SubComponents>
     </Container>
