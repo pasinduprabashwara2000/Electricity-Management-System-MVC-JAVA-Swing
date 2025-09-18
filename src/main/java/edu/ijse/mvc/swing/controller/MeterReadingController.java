@@ -8,7 +8,15 @@ public class MeterReadingController {
     MeterReadingModel meterReadingModel = new MeterReadingModel();
 
     public String saveMeterReading(MeterReading meterReading) throws Exception{
-        return
+        return meterReadingModel.saveReading(meterReading);
+    }
+
+    public String updateMeterReading(MeterReading meterReading) throws Exception{
+        return meterReadingModel.updateReading(meterReading);
+    }
+
+    public String deleteMeterReading(String meterID) throws Exception{
+        return meterReadingModel.deleteReading(meterID);
     }
 
 }

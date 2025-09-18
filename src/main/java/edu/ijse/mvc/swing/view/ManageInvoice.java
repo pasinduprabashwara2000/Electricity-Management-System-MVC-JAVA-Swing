@@ -98,13 +98,13 @@ public class ManageInvoice extends javax.swing.JPanel {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "id", "name", "address", "contact", "email"
+                "invoice_id", "customer_id", "meter_id", "consumption_units", "period_start", "period_end", "status", "total_amount"
             }
         ));
         jTable1.setRowHeight(25);

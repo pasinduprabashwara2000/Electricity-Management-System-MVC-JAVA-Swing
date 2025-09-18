@@ -13,7 +13,7 @@ public class MeterModel {
     public String addMeter(MeterDto meterDto) throws Exception {
 
         Connection connection = DBConnection.getInstance().getConnection();
-        String sql = "INSERT INTO meter VALUES()";
+        String sql = "INSERT INTO meter VALUES(?,?,?,?,?)";
         PreparedStatement st = connection.prepareStatement(sql);
         st.setString(1, meterDto.getMeterId());
         st.setObject(2, meterDto.getMeterType());
@@ -27,14 +27,13 @@ public class MeterModel {
     public String updateMeter(MeterDto meterDto) throws Exception {
 
         Connection conn = DBConnection.getInstance().getConnection();
-        String sql = "UPDATE meter SET meter_type = ? , installion_date = ? , stutus_type = ? WHERE location = ?";
+        String sql = "UPDATE meter SET meter_type = ? , installion_date = ? , stutus_type = ? ,location = ? WHERE meter_id = ?";
         PreparedStatement st = conn.prepareStatement(sql);
-
-        st.setString(1, meterDto.getMeterId());
-        st.setObject(2, meterDto.getMeterType());
-        st.setDate(3, meterDto.getInstallion_date());
-        st.setObject(4, meterDto.getStatus_type());
-        st.setString(5, meterDto.getLocation());
+        st.setObject(1, meterDto.getMeterType());
+        st.setDate(2, meterDto.getInstallion_date());
+        st.setObject(3, meterDto.getStatus_type());
+        st.setString(4, meterDto.getLocation());
+        st.setString(5, meterDto.getMeterId());
 
         return st.executeUpdate() > 0 ? "Meter Details Updated" : "Meter Details Updated Failed";
 

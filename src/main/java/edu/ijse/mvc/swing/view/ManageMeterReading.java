@@ -6,8 +6,8 @@ package edu.ijse.mvc.swing.view;
 
 import edu.ijse.mvc.swing.controller.MeterReadingController;
 import edu.ijse.mvc.swing.dto.MeterReading;
-
 import javax.swing.*;
+import java.sql.Date;
 
 /**
  *
@@ -262,14 +262,22 @@ public class ManageMeterReading extends javax.swing.JPanel {
     }
 
     public void saveMeterReading() {
-        MeterReading meterReading =new MeterReading(
-          readingIDTxt.getText(),
-          meterIDTxt.getText(),
-          Integer.parseInt(readingValueTxt.getText()),
-          datePicker.getDate(),
-          recordTxt.getText()
-        );
-        String rsp = meterReadingController
+
+        try {
+            MeterReading meterReading =new MeterReading(
+                    readingIDTxt.getText(),
+                    meterIDTxt.getText(),
+                    Integer.parseInt(readingValueTxt.getText()),
+                    (Date) datePicker.getDate(),
+                    recordTxt.getText()
+            );
+            String rsp = meterReadingController.saveMeterReading(meterReading);
+            JOptionPane.showMessageDialog(this,rsp);
+            reset();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this,e.getMessage());
+        }
+
     }
 
     public void updateCustomer() {
