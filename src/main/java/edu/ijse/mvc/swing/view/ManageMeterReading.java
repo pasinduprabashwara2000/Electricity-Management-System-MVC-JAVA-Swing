@@ -242,11 +242,11 @@ public class ManageMeterReading extends javax.swing.JPanel {
     }//GEN-LAST:event_saveBtnActionPerformed
 
     private void updateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateBtnActionPerformed
-       updateCustomer();
+       updateMeterReading();
     }//GEN-LAST:event_updateBtnActionPerformed
 
     private void deleteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBtnActionPerformed
-        deleteCustomer();
+        deleteMeterReading();
     }//GEN-LAST:event_deleteBtnActionPerformed
 
     private void resetBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resetBtnActionPerformed
@@ -280,31 +280,32 @@ public class ManageMeterReading extends javax.swing.JPanel {
 
     }
 
-    public void updateCustomer() {
+    public void updateMeterReading() {
         try {
-            CustomerDto customerDto = new CustomerDto(
+            MeterReading meterReading = new MeterReading(
                     readingIDTxt.getText(),
                     meterIDTxt.getText(),
-                    readingValueTxt.getText(),
-                    Integer.parseInt(contactTxt.getText()),
+                    Integer.parseInt(readingValueTxt.getText()),
+                    (Date) datePicker.getDate(),
                     recordTxt.getText()
             );
-            String rsp = customerController.updateCustomer(customerDto);
+            String rsp = meterReadingController.updateMeterReading(meterReading);
             JOptionPane.showMessageDialog(this, rsp);
             reset();
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, e.getMessage());
+            JOptionPane.showMessageDialog(this,e.getMessage());
         }
+
     }
 
-    public void deleteCustomer() {
+    public void deleteMeterReading() {
         try {
-            String id = readingIDTxt.getText();
-            String rsp = customerController.deleteCustomer(id);
-            JOptionPane.showMessageDialog(this, rsp);
+            String rsp = meterReadingController.deleteMeterReading(readingID.getText());
+            JOptionPane.showMessageDialog(this,rsp);
             reset();
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, e.getMessage());
+            JOptionPane.showMessageDialog(this,e.getMessage());
+            reset();
         }
     }
 

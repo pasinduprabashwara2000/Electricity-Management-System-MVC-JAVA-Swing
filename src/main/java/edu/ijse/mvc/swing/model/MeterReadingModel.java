@@ -4,6 +4,8 @@ import edu.ijse.mvc.swing.db.DBConnection;
 import edu.ijse.mvc.swing.dto.MeterReading;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
 
 public class MeterReadingModel {
 
@@ -45,6 +47,51 @@ public class MeterReadingModel {
 
         return st.executeUpdate() > 0 ? "Meter Reading Delete Successfully" : "Meter Reading Deleted Failed";
 
+    }
+
+    public MeterReading searchReading(String readingID) throws Exception{
+
+        Connection conn = DBConnection.getInstance().getConnection();
+        String sql = "SELECT * FROM meter_reading WHERE meter_id = ?";
+        PreparedStatement st = conn.prepareStatement(sql);
+        st.setString(1,readingID);
+
+        ResultSet rst = st.executeQuery();
+
+        if (rst.next()){
+            return new MeterReading(
+                    rst.getString("reading_id"),
+                    rst.getString("meter_id"),
+                    rst.getInt("reading_value"),
+                    rst.getDate("reading_date"),
+                    rst.getString("recorded_by")
+            );
+        }
+
+        return null;
+
+    }
+
+    public ArrayList <MeterReading> getAllReading() throws Exception{
+
+        ArrayList <MeterReading> readingDtos = new ArrayList<>();
+
+        Connection conn = DBConnection.getInstance().getConnection();
+        String sql = "SELECT * FROM meter_reading";
+        PreparedStatement st = conn.prepareStatement(sql);
+
+        ResultSet rst = st.executeQuery();
+
+        while (rst.next()){
+            readingDtos.add(new MeterReading(
+                    rst.getString("reading_id"),
+                    rst.getString("meter_id"),
+                    rst.getInt("reading_value"),
+                    rst.getDate("reading_date"),
+                    rst.getString("recorded_by")
+            ));
+        }
+        return readingDtos;
     }
 
 }

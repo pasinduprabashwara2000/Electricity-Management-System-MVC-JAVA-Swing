@@ -2,6 +2,7 @@ package edu.ijse.mvc.swing.controller;
 
 import edu.ijse.mvc.swing.dto.MeterReading;
 import edu.ijse.mvc.swing.model.MeterReadingModel;
+import java.util.ArrayList;
 
 public class MeterReadingController {
 
@@ -17,6 +18,14 @@ public class MeterReadingController {
 
     public String deleteMeterReading(String meterID) throws Exception{
         return meterReadingModel.deleteReading(meterID);
+    }
+
+    public MeterReading searchReading(String meterID) throws Exception{
+        return meterReadingModel.searchReading(meterID);
+    }
+
+    ArrayList <MeterReading> getAllReading () throws Exception {
+        return meterReadingModel.getAllReading();
     }
 
 }

@@ -5,9 +5,11 @@
 package edu.ijse.mvc.swing.view;
 
 import edu.ijse.mvc.swing.controller.CustomerController;
+import edu.ijse.mvc.swing.controller.TariffController;
 import edu.ijse.mvc.swing.dto.CustomerDto;
-
+import edu.ijse.mvc.swing.dto.TariffDto;
 import javax.swing.*;
+import java.sql.Date;
 
 /**
  *
@@ -15,7 +17,7 @@ import javax.swing.*;
  */
 public class ManageTariff extends javax.swing.JPanel {
 
-    private final CustomerController customerController = new CustomerController();
+    private final TariffController tariffController = new TariffController();
 
     /**
      * Creates new form ManageCustomer
@@ -234,15 +236,15 @@ public class ManageTariff extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void saveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBtnActionPerformed
-        saveCustomer();
+        saveTariff();
     }//GEN-LAST:event_saveBtnActionPerformed
 
     private void updateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateBtnActionPerformed
-       updateCustomer();
+       updateTariff();
     }//GEN-LAST:event_updateBtnActionPerformed
 
     private void deleteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBtnActionPerformed
-        deleteCustomer();
+        deleteTariff();
     }//GEN-LAST:event_deleteBtnActionPerformed
 
     private void resetBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resetBtnActionPerformed
@@ -252,53 +254,52 @@ public class ManageTariff extends javax.swing.JPanel {
     public void reset() {
         tariffIDTxt.setText("");
         nameTxt.setText("");
-        addressTxt.setText("");
-        contactTxt.setText("");
+        datePicker.setDate(null);
+        datePicker2.setDate(null);
         chargeTxt.setText("");
     }
 
-    public void saveCustomer() {
+    public void saveTariff() {
         try {
-            CustomerDto customerDto = new CustomerDto(
-                    tariffIDTxt.getText(),
-                    nameTxt.getText(),
-                    addressTxt.getText(),
-                    Integer.parseInt(contactTxt.getText()),
-                    chargeTxt.getText()
+            TariffDto tariffDto = new TariffDto(
+              tariffIDTxt.getText(),
+              nameTxt.getText(),
+                    (Date)datePicker.getDate(),
+                    (Date)datePicker2.getDate(),
+                    Double.parseDouble(chargeTxt.getText())
             );
-            String rsp = customerController.addCustomer(customerDto);
-            JOptionPane.showMessageDialog(this, rsp);
+            String rsp = tariffController.addTariff(tariffDto);
+            JOptionPane.showMessageDialog(this,rsp);
             reset();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, e.getMessage());
         }
     }
 
-    public void updateCustomer() {
+    public void updateTariff() {
         try {
-            CustomerDto customerDto = new CustomerDto(
+            TariffDto tariffDto = new TariffDto(
                     tariffIDTxt.getText(),
                     nameTxt.getText(),
-                    addressTxt.getText(),
-                    Integer.parseInt(contactTxt.getText()),
-                    chargeTxt.getText()
+                    (Date)datePicker.getDate(),
+                    (Date)datePicker2.getDate(),
+                    Double.parseDouble(chargeTxt.getText())
             );
-            String rsp = customerController.updateCustomer(customerDto);
-            JOptionPane.showMessageDialog(this, rsp);
+            String rsp = tariffController.updateTariff(tariffDto);
+            JOptionPane.showMessageDialog(this,rsp);
             reset();
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, e.getMessage());
+            JOptionPane.showMessageDialog(this,e.getMessage());
         }
     }
 
-    public void deleteCustomer() {
+    public void deleteTariff() {
         try {
-            String id = tariffIDTxt.getText();
-            String rsp = customerController.deleteCustomer(id);
-            JOptionPane.showMessageDialog(this, rsp);
+            String rsp = tariffController.deleteTariff(tariffIDTxt.getText());
+            JOptionPane.showMessageDialog(this,rsp);
             reset();
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, e.getMessage());
+            JOptionPane.showMessageDialog(this,e.getMessage());
         }
     }
 
