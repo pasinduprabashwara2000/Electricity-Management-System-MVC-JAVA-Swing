@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 public class TariffController {
 
-    TariffModel tariffModel = new TariffModel();
+    private TariffModel tariffModel = new TariffModel();
 
     public String addTariff(TariffDto tariffDto) throws Exception{
        return tariffModel.saveTariff(tariffDto);

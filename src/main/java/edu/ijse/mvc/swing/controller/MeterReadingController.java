@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public class MeterReadingController {
 
-    MeterReadingModel meterReadingModel = new MeterReadingModel();
+    private MeterReadingModel meterReadingModel = new MeterReadingModel();
 
     public String saveMeterReading(MeterReading meterReading) throws Exception{
         return meterReadingModel.saveReading(meterReading);

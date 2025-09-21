@@ -26,7 +26,7 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
               <Component id="menuPanel" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace min="-2" max="-2" attributes="0"/>
               <Component id="leftPanel" max="32767" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -56,24 +56,27 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace max="32767" attributes="0"/>
-                  <Component id="titleLabel" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="115" max="-2" attributes="0"/>
-              </Group>
               <Group type="102" attributes="0">
-                  <EmptySpace min="24" pref="24" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="customerBtn" min="-2" pref="272" max="-2" attributes="0"/>
-                      <Component id="meterBtn" min="-2" pref="272" max="-2" attributes="0"/>
-                      <Component id="meterReadingBtn" min="-2" pref="272" max="-2" attributes="0"/>
-                      <Component id="tariffBtn" min="-2" pref="272" max="-2" attributes="0"/>
-                      <Component id="tariffSlabBtn" min="-2" pref="272" max="-2" attributes="0"/>
-                      <Component id="invoiceBtn" min="-2" pref="272" max="-2" attributes="0"/>
-                      <Component id="paymentBtn" min="-2" pref="272" max="-2" attributes="0"/>
-                      <Component id="logOutBtn" min="-2" pref="272" max="-2" attributes="0"/>
+                      <Group type="102" attributes="0">
+                          <EmptySpace min="24" pref="24" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                              <Component id="paymentBtn" alignment="0" max="32767" attributes="0"/>
+                              <Component id="invoiceBtn" alignment="0" max="32767" attributes="0"/>
+                              <Component id="tariffSlabBtn" alignment="0" max="32767" attributes="0"/>
+                              <Component id="tariffBtn" alignment="0" max="32767" attributes="0"/>
+                              <Component id="meterReadingBtn" alignment="0" pref="238" max="32767" attributes="0"/>
+                              <Component id="meterBtn" alignment="0" max="32767" attributes="0"/>
+                              <Component id="customerBtn" alignment="0" max="32767" attributes="0"/>
+                              <Component id="logOutBtn" max="32767" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="86" max="-2" attributes="0"/>
+                          <Component id="titleLabel" min="-2" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
-                  <EmptySpace pref="36" max="32767" attributes="0"/>
+                  <EmptySpace pref="30" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>

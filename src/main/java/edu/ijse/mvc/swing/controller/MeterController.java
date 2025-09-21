@@ -20,7 +20,7 @@ public class MeterController {
         return meterModel.deleteMeter(id);
     }
 
-    public MeterDto selectmeter(String id) throws Exception{
+    public MeterDto selectMeter(String id) throws Exception{
         return meterModel.selectMeter(id);
     }
 

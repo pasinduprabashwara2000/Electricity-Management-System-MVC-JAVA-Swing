@@ -4,10 +4,12 @@
  */
 package edu.ijse.mvc.swing.view;
 
-import edu.ijse.mvc.swing.controller.CustomerController;
+import edu.ijse.mvc.swing.controller.InvoiceController;
 import edu.ijse.mvc.swing.dto.CustomerDto;
+import edu.ijse.mvc.swing.dto.InvoiceDto;
 
 import javax.swing.*;
+import java.sql.Date;
 
 /**
  *
@@ -15,8 +17,7 @@ import javax.swing.*;
  */
 public class ManageInvoice extends javax.swing.JPanel {
 
-    private final CustomerController customerController = new CustomerController();
-
+    private final InvoiceController invoiceController = new InvoiceController();
     /**
      * Creates new form ManageCustomer
      */
@@ -56,6 +57,9 @@ public class ManageInvoice extends javax.swing.JPanel {
         statusLabel = new javax.swing.JLabel();
         statusPicker = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
+        amountTxt = new javax.swing.JLabel();
+
+        setPreferredSize(new java.awt.Dimension(1052, 768));
 
         jPanel1.setBackground(new java.awt.Color(204, 255, 255));
         jPanel1.setPreferredSize(new java.awt.Dimension(1052, 768));
@@ -186,7 +190,9 @@ public class ManageInvoice extends javax.swing.JPanel {
                                     .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(unitsLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(unitsTxt))))
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(unitsTxt)
+                                    .addComponent(amountTxt, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(meterIDLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(1, 1, 1)
@@ -238,10 +244,12 @@ public class ManageInvoice extends javax.swing.JPanel {
                                         .addComponent(periodEndLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGap(0, 0, Short.MAX_VALUE)))
                         .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(statusLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(statusPicker, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(statusLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(statusPicker, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(amountTxt, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(63, 63, 63))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(invoiceIDTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -277,15 +285,15 @@ public class ManageInvoice extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void saveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBtnActionPerformed
-        saveCustomer();
+        saveInvoice();
     }//GEN-LAST:event_saveBtnActionPerformed
 
     private void updateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateBtnActionPerformed
-       updateCustomer();
+       updateInvoice();
     }//GEN-LAST:event_updateBtnActionPerformed
 
     private void deleteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBtnActionPerformed
-        deleteCustomer();
+        deleteInvoice();
     }//GEN-LAST:event_deleteBtnActionPerformed
 
     private void resetBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resetBtnActionPerformed
@@ -299,58 +307,68 @@ public class ManageInvoice extends javax.swing.JPanel {
     public void reset() {
         invoiceIDTxt.setText("");
         CustomerIDTxt.setText("");
-        customerIDTxt.setText("");
+        materIDTxt.setText("");
+        startDatePicker.setDate(null);
+        endDatePicker.setDate(null);
         unitsTxt.setText("");
-        periodStartTxt.setText("");
+        amountTxt.setText("");
+        statusPicker.setSelectedIndex(-1);
+
     }
 
-    public void saveCustomer() {
+    public void saveInvoice() {
         try {
-            CustomerDto customerDto = new CustomerDto(
+            InvoiceDto invoiceDto = new InvoiceDto(
                     invoiceIDTxt.getText(),
                     CustomerIDTxt.getText(),
-                    customerIDTxt.getText(),
+                    materIDTxt.getText(),
+                    (Date) startDatePicker.getDate(),
+                    (Date) endDatePicker.getDate(),
                     Integer.parseInt(unitsTxt.getText()),
-                    periodStartTxt.getText()
+                    Double.parseDouble(amountTxt.getText()),
+                    (String) statusPicker.getSelectedItem()
             );
-            String rsp = customerController.addCustomer(customerDto);
-            JOptionPane.showMessageDialog(this, rsp);
+            String rsp = invoiceController.addInvoice(invoiceDto);
+            JOptionPane.showMessageDialog(this,rsp);
             reset();
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, e.getMessage());
+            JOptionPane.showMessageDialog(this,e.getMessage());
         }
     }
 
-    public void updateCustomer() {
+    public void updateInvoice() {
         try {
-            CustomerDto customerDto = new CustomerDto(
+            InvoiceDto invoiceDto = new InvoiceDto(
                     invoiceIDTxt.getText(),
                     CustomerIDTxt.getText(),
-                    customerIDTxt.getText(),
+                    materIDTxt.getText(),
+                    (Date) startDatePicker.getDate(),
+                    (Date) endDatePicker.getDate(),
                     Integer.parseInt(unitsTxt.getText()),
-                    periodStartTxt.getText()
+                    Double.parseDouble(amountTxt.getText()),
+                    (String) statusPicker.getSelectedItem()
             );
-            String rsp = customerController.updateCustomer(customerDto);
-            JOptionPane.showMessageDialog(this, rsp);
+            String rsp = invoiceController.updateInvoice(invoiceDto);
+            JOptionPane.showMessageDialog(this,rsp);
             reset();
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, e.getMessage());
+            JOptionPane.showMessageDialog(this,e.getMessage());
         }
     }
 
-    public void deleteCustomer() {
+    public void deleteInvoice() {
         try {
-            String id = invoiceIDTxt.getText();
-            String rsp = customerController.deleteCustomer(id);
-            JOptionPane.showMessageDialog(this, rsp);
+            String rsp = invoiceController.deleteInvoice(invoiceIDTxt.getText());
+            JOptionPane.showMessageDialog(this,rsp);
             reset();
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, e.getMessage());
+            JOptionPane.showMessageDialog(this,e.getMessage());
         }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField CustomerIDTxt;
+    private javax.swing.JLabel amountTxt;
     private javax.swing.JLabel customerIDLabel;
     private javax.swing.JButton deleteBtn;
     private de.wannawork.jcalendar.JCalendarComboBox endDatePicker;

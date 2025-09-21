@@ -5,7 +5,9 @@
 package edu.ijse.mvc.swing.view;
 
 import edu.ijse.mvc.swing.controller.CustomerController;
+import edu.ijse.mvc.swing.controller.TariffSlabController;
 import edu.ijse.mvc.swing.dto.CustomerDto;
+import edu.ijse.mvc.swing.dto.TariffSlabDto;
 
 import javax.swing.*;
 
@@ -15,7 +17,7 @@ import javax.swing.*;
  */
 public class ManageTariffSlab extends javax.swing.JPanel {
 
-    private final CustomerController customerController = new CustomerController();
+    private final TariffSlabController tariffSlabController = new TariffSlabController();
 
     /**
      * Creates new form ManageCustomer
@@ -242,11 +244,11 @@ public class ManageTariffSlab extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void saveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBtnActionPerformed
-        saveCustomer();
+        saveTariffSlab();
     }//GEN-LAST:event_saveBtnActionPerformed
 
     private void updateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateBtnActionPerformed
-       updateCustomer();
+       updateTariffSlab();
     }//GEN-LAST:event_updateBtnActionPerformed
 
     private void deleteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBtnActionPerformed
@@ -265,48 +267,47 @@ public class ManageTariffSlab extends javax.swing.JPanel {
         ratePerTxt.setText("");
     }
 
-    public void saveCustomer() {
+    public void saveTariffSlab() {
         try {
-            CustomerDto customerDto = new CustomerDto(
+            TariffSlabDto tariffSlabDto = new TariffSlabDto(
                     idTxt.getText(),
                     tariffIDTxt.getText(),
-                    fromUnitTxt.getText(),
+                    Integer.parseInt(fromUnitTxt.getText()),
                     Integer.parseInt(toUnitTxt.getText()),
-                    ratePerTxt.getText()
+                    Double.parseDouble(ratePerTxt.getText())
             );
-            String rsp = customerController.addCustomer(customerDto);
-            JOptionPane.showMessageDialog(this, rsp);
+            String rsp = tariffSlabController.addTariffSlab(tariffSlabDto);
+            JOptionPane.showMessageDialog(this,rsp);
             reset();
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, e.getMessage());
+            JOptionPane.showMessageDialog(this,e.getMessage());
         }
     }
 
-    public void updateCustomer() {
+    public void updateTariffSlab() {
         try {
-            CustomerDto customerDto = new CustomerDto(
+            TariffSlabDto tariffSlabDto = new TariffSlabDto(
                     idTxt.getText(),
                     tariffIDTxt.getText(),
-                    fromUnitTxt.getText(),
+                    Integer.parseInt(fromUnitTxt.getText()),
                     Integer.parseInt(toUnitTxt.getText()),
-                    ratePerTxt.getText()
+                    Double.parseDouble(ratePerTxt.getText())
             );
-            String rsp = customerController.updateCustomer(customerDto);
-            JOptionPane.showMessageDialog(this, rsp);
+            String rsp = tariffSlabController.updateTariffSlab(tariffSlabDto);
+            JOptionPane.showMessageDialog(this,rsp);
             reset();
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, e.getMessage());
+            JOptionPane.showMessageDialog(this,e.getMessage());
         }
     }
 
     public void deleteCustomer() {
         try {
-            String id = idTxt.getText();
-            String rsp = customerController.deleteCustomer(id);
-            JOptionPane.showMessageDialog(this, rsp);
+            String rsp = tariffSlabController.deleteTariffSlab(idTxt.getText());
+            JOptionPane.showMessageDialog(this,rsp);
             reset();
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, e.getMessage());
+            JOptionPane.showMessageDialog(this,e.getMessage());
         }
     }
 
