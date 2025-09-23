@@ -281,7 +281,7 @@ public class ManageCustomer extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, e.getMessage());
         }
     }
-
+    
     public void updateCustomer() {
         try {
             CustomerDto customerDto = new CustomerDto(

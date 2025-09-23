@@ -4,11 +4,10 @@
  */
 package edu.ijse.mvc.swing.view;
 
-import edu.ijse.mvc.swing.controller.CustomerController;
 import edu.ijse.mvc.swing.controller.PaymentController;
-import edu.ijse.mvc.swing.dto.CustomerDto;
-
+import edu.ijse.mvc.swing.dto.PaymentDto;
 import javax.swing.*;
+import java.sql.Date;
 
 /**
  *
@@ -260,15 +259,48 @@ public class ManagePayment extends javax.swing.JPanel {
     }
 
     public void savePayment() {
+        try{
+            PaymentDto paymentDto = new PaymentDto(
+                    paymentIDTxt.getText(),
+                    invoiceTxt.getText(),
+                    Double.parseDouble(paidAmountTxt.getText()),
+                    (Date) datePicker.getDate(),
+                    methodPicker.getSelectedItem().toString()
+            );
+            String rsp = paymentController.addPayment(paymentDto);
+            JOptionPane.showMessageDialog(this,rsp);
+            reset();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this,e.getMessage());
+        }
 
     }
 
     public void updatePayment() {
-
+        try {
+            PaymentDto paymentDto = new PaymentDto(
+                    paymentIDTxt.getText(),
+                    invoiceTxt.getText(),
+                    Double.parseDouble(paidAmountTxt.getText()),
+                    (Date) datePicker.getDate(),
+                    methodPicker.getSelectedItem().toString()
+            );
+            String rsp = paymentController.updatePayment(paymentDto);
+            JOptionPane.showMessageDialog(this,rsp);
+            reset();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this,e.getMessage());
+        }
     }
 
     public void deletePayment() {
-
+        try {
+            String rsp = paymentController.deletePayment(paymentIDTxt.getText());
+            JOptionPane.showMessageDialog(this,rsp);
+            reset();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this,e.getMessage());
+        }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

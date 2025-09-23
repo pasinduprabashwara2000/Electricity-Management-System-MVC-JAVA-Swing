@@ -46,6 +46,7 @@ public class ManageMainMenu extends javax.swing.JFrame {
         invoiceBtn = new javax.swing.JButton();
         paymentBtn = new javax.swing.JButton();
         logOutBtn = new javax.swing.JButton();
+        employeeBtn = new javax.swing.JButton();
         leftPanel = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -127,6 +128,15 @@ public class ManageMainMenu extends javax.swing.JFrame {
             }
         });
 
+        employeeBtn.setBackground(new java.awt.Color(51, 255, 0));
+        employeeBtn.setFont(new java.awt.Font("Liberation Sans", 1, 15)); // NOI18N
+        employeeBtn.setText("Manage Employee");
+        employeeBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                employeeBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout menuPanelLayout = new javax.swing.GroupLayout(menuPanel);
         menuPanel.setLayout(menuPanelLayout);
         menuPanelLayout.setHorizontalGroup(
@@ -143,7 +153,8 @@ public class ManageMainMenu extends javax.swing.JFrame {
                             .addComponent(meterReadingBtn, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 238, Short.MAX_VALUE)
                             .addComponent(meterBtn, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(customerBtn, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(logOutBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(logOutBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(employeeBtn, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(menuPanelLayout.createSequentialGroup()
                         .addGap(86, 86, 86)
                         .addComponent(titleLabel)))
@@ -159,6 +170,8 @@ public class ManageMainMenu extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(meterBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
+                .addComponent(employeeBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(meterReadingBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(tariffBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -170,7 +183,7 @@ public class ManageMainMenu extends javax.swing.JFrame {
                 .addComponent(paymentBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(logOutBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(197, Short.MAX_VALUE))
+                .addContainerGap(136, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout leftPanelLayout = new javax.swing.GroupLayout(leftPanel);
@@ -233,12 +246,16 @@ public class ManageMainMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_invoiceBtnActionPerformed
 
     private void paymentBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_paymentBtnActionPerformed
-        // TODO add your handling code here:
+        loadUI("payment");
     }//GEN-LAST:event_paymentBtnActionPerformed
 
     private void logOutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logOutBtnActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_logOutBtnActionPerformed
+
+    private void employeeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_employeeBtnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_employeeBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -286,6 +303,10 @@ public class ManageMainMenu extends javax.swing.JFrame {
                 break;
             case "invoice" :
                 panelToLoad = new ManageInvoice();
+                break;
+            case "payment" :
+                panelToLoad = new ManagePayment();
+                break;
         }
 
         if(panelToLoad != null){
@@ -298,6 +319,7 @@ public class ManageMainMenu extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton customerBtn;
+    private javax.swing.JButton employeeBtn;
     private javax.swing.JButton invoiceBtn;
     private javax.swing.JPanel leftPanel;
     private javax.swing.JButton logOutBtn;

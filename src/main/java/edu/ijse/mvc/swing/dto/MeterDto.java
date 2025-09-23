@@ -16,5 +16,6 @@ public class MeterDto {
     private Date installion_date;
     private String status_type;
     private String location;
+    private String customerID;
 
 }

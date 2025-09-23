@@ -13,13 +13,14 @@ public class MeterModel {
     public String addMeter(MeterDto meterDto) throws Exception {
 
         Connection connection = DBConnection.getInstance().getConnection();
-        String sql = "INSERT INTO meter VALUES(?,?,?,?,?)";
+        String sql = "INSERT INTO meter VALUES(?,?,?,?,?,?)";
         PreparedStatement st = connection.prepareStatement(sql);
         st.setString(1, meterDto.getMeterId());
         st.setObject(2, meterDto.getMeterType());
         st.setDate(3, meterDto.getInstallion_date());
         st.setObject(4, meterDto.getStatus_type());
         st.setString(5, meterDto.getLocation());
+        st.setString(6,meterDto.getCustomerID());
 
         return st.executeUpdate() > 0 ? "Meter Details Inserted" : "Meter Details Inserted Failed";
     }
@@ -27,13 +28,14 @@ public class MeterModel {
     public String updateMeter(MeterDto meterDto) throws Exception {
 
         Connection conn = DBConnection.getInstance().getConnection();
-        String sql = "UPDATE meter SET meter_type = ? , installion_date = ? , stutus_type = ? ,location = ? WHERE meter_id = ?";
+        String sql = "UPDATE meter SET meter_type = ? , installion_date = ? , stutus_type = ? ,location = ? , customer_id = ? WHERE meter_id = ?";
         PreparedStatement st = conn.prepareStatement(sql);
         st.setObject(1, meterDto.getMeterType());
         st.setDate(2, meterDto.getInstallion_date());
         st.setObject(3, meterDto.getStatus_type());
         st.setString(4, meterDto.getLocation());
-        st.setString(5, meterDto.getMeterId());
+        st.setString(5,meterDto.getCustomerID());
+        st.setString(6, meterDto.getMeterId());
 
         return st.executeUpdate() > 0 ? "Meter Details Updated" : "Meter Details Updated Failed";
 
@@ -63,7 +65,8 @@ public class MeterModel {
                     rst.getString("meter_type"),
                     rst.getDate("date"),
                     rst.getString("status_type"),
-                    rst.getString("location")
+                    rst.getString("location"),
+                    rst.getString("customer_id")
             );
         }
 
@@ -86,7 +89,8 @@ public class MeterModel {
                     rst.getString("meter_type"),
                     rst.getDate("date"),
                     rst.getString("status_type"),
-                    rst.getString("location")
+                    rst.getString("location"),
+                    rst.getString("customer_id")
             ));
         }
 

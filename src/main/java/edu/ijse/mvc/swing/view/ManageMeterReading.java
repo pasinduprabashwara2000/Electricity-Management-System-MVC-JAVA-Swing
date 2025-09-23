@@ -77,7 +77,7 @@ public class ManageMeterReading extends javax.swing.JPanel {
         dateLabel.setText("Reading Date :");
 
         recordLabel.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
-        recordLabel.setText("Recorded By :");
+        recordLabel.setText("Recorded By  (EMP ID) :");
 
         recordTxt.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
 
@@ -149,9 +149,9 @@ public class ManageMeterReading extends javax.swing.JPanel {
                                 .addGap(20, 20, 20)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(recordLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(1, 1, 1)
-                                        .addComponent(recordTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(recordLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(recordTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                             .addComponent(readingID, javax.swing.GroupLayout.DEFAULT_SIZE, 146, Short.MAX_VALUE)
