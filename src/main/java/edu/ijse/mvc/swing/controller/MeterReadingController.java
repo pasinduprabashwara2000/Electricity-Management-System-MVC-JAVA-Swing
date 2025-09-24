@@ -24,7 +24,7 @@ public class MeterReadingController {
         return meterReadingModel.searchReading(meterID);
     }
 
-    ArrayList <MeterReading> getAllReading () throws Exception {
+    public ArrayList <MeterReading> getAllReading () throws Exception {
         return meterReadingModel.getAllReading();
     }
 

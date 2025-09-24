@@ -8,7 +8,9 @@ import edu.ijse.mvc.swing.controller.MeterController;
 import edu.ijse.mvc.swing.dto.MeterDto;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 import java.sql.Date;
+import java.util.ArrayList;
 
 /**
  *
@@ -25,6 +27,7 @@ ManageMeter extends javax.swing.JPanel {
      */
     public ManageMeter() {
         initComponents();
+        loadTable();
     }
 
     @SuppressWarnings("unchecked")
@@ -42,7 +45,7 @@ ManageMeter extends javax.swing.JPanel {
         locationTxt = new javax.swing.JTextField();
         saveBtn = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        detailsTabel = new javax.swing.JTable();
         updateBtn = new javax.swing.JButton();
         deleteBtn = new javax.swing.JButton();
         resetBtn = new javax.swing.JButton();
@@ -89,7 +92,7 @@ ManageMeter extends javax.swing.JPanel {
             }
         });
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        detailsTabel.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
                 {null, null, null, null, null},
@@ -100,8 +103,8 @@ ManageMeter extends javax.swing.JPanel {
                 "id", "meter_type", "date", "status_type", "location"
             }
         ));
-        jTable1.setRowHeight(25);
-        jScrollPane1.setViewportView(jTable1);
+        detailsTabel.setRowHeight(25);
+        jScrollPane1.setViewportView(detailsTabel);
 
         updateBtn.setBackground(new java.awt.Color(0, 102, 204));
         updateBtn.setFont(new java.awt.Font("Liberation Sans", 1, 15)); // NOI18N
@@ -288,6 +291,7 @@ ManageMeter extends javax.swing.JPanel {
             String rsp = meterController.addMeter(meterDto);
             JOptionPane.showMessageDialog(this, rsp);
             reset();
+            loadTable();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, e.getMessage());
         }
@@ -309,6 +313,7 @@ ManageMeter extends javax.swing.JPanel {
 
             JOptionPane.showMessageDialog(this, meterController.updateMeter(meterDto));
             reset();
+            loadTable();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, e.getMessage());
         }
@@ -319,9 +324,33 @@ ManageMeter extends javax.swing.JPanel {
             String rsp = meterController.deleteMeter(meterIdTxt.getText());
             JOptionPane.showMessageDialog(this, rsp);
             reset();
+            loadTable();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, e.getMessage());
         }
+    }
+
+    public void loadTable(){
+
+        DefaultTableModel dtm = (DefaultTableModel) detailsTabel.getModel();
+        dtm.setRowCount(0);
+
+        try {
+            for(MeterDto meterDto : meterController.getAllMeter()){
+                ArrayList <Object> row = new ArrayList<>();
+                row.add(meterDto.getMeterId());
+                row.add(meterDto.getMeterType());
+                row.add(meterDto.getInstallion_date());
+                row.add(meterDto.getStatus_type());
+                row.add(meterDto.getLocation());
+                row.add(meterDto.getCustomerID());
+                dtm.addRow(row.toArray());
+            }
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this,e.getMessage());
+        }
+
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -330,10 +359,10 @@ ManageMeter extends javax.swing.JPanel {
     private javax.swing.JLabel dateLabel;
     private de.wannawork.jcalendar.JCalendarComboBox datePicker;
     private javax.swing.JButton deleteBtn;
+    private javax.swing.JTable detailsTabel;
     private javax.swing.JLabel idLabel;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JLabel locationLabel;
     private javax.swing.JTextField locationTxt;
     private javax.swing.JTextField meterIdTxt;

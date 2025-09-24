@@ -6,8 +6,9 @@ package edu.ijse.mvc.swing.view;
 
 import edu.ijse.mvc.swing.controller.CustomerController;
 import edu.ijse.mvc.swing.dto.CustomerDto;
-
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+import java.util.ArrayList;
 
 /**
  *
@@ -22,6 +23,7 @@ public class ManageCustomer extends javax.swing.JPanel {
      */
     public ManageCustomer() {
         initComponents();
+        loadTable();
     }
 
     /**
@@ -47,7 +49,7 @@ public class ManageCustomer extends javax.swing.JPanel {
         emailTxt = new javax.swing.JTextField();
         saveBtn = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        detailsTabel = new javax.swing.JTable();
         updateBtn = new javax.swing.JButton();
         deleteBtn = new javax.swing.JButton();
         resetBtn = new javax.swing.JButton();
@@ -93,7 +95,7 @@ public class ManageCustomer extends javax.swing.JPanel {
             }
         });
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        detailsTabel.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
                 {null, null, null, null, null},
@@ -104,8 +106,8 @@ public class ManageCustomer extends javax.swing.JPanel {
                 "id", "name", "address", "contact", "email"
             }
         ));
-        jTable1.setRowHeight(25);
-        jScrollPane1.setViewportView(jTable1);
+        detailsTabel.setRowHeight(25);
+        jScrollPane1.setViewportView(detailsTabel);
 
         updateBtn.setBackground(new java.awt.Color(0, 102, 204));
         updateBtn.setFont(new java.awt.Font("Liberation Sans", 1, 15)); // NOI18N
@@ -277,6 +279,7 @@ public class ManageCustomer extends javax.swing.JPanel {
             String rsp = customerController.addCustomer(customerDto);
             JOptionPane.showMessageDialog(this, rsp);
             reset();
+            loadTable();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, e.getMessage());
         }
@@ -294,6 +297,7 @@ public class ManageCustomer extends javax.swing.JPanel {
             String rsp = customerController.updateCustomer(customerDto);
             JOptionPane.showMessageDialog(this, rsp);
             reset();
+            loadTable();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, e.getMessage());
         }
@@ -305,10 +309,31 @@ public class ManageCustomer extends javax.swing.JPanel {
             String rsp = customerController.deleteCustomer(id);
             JOptionPane.showMessageDialog(this, rsp);
             reset();
+            loadTable();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, e.getMessage());
         }
     }
+
+    public void loadTable() {
+        DefaultTableModel dtm = (DefaultTableModel) detailsTabel.getModel();
+        dtm.setRowCount(0);
+
+        try {
+            for (CustomerDto customerDto : customerController.getAllCustomer()) {
+                ArrayList<Object> row = new ArrayList<>();
+                row.add(customerDto.getCustomerId());
+                row.add(customerDto.getCustomerName());
+                row.add(customerDto.getCustomerAddress());
+                row.add(customerDto.getCustomerContact());
+                row.add(customerDto.getCustomerEmail());
+                dtm.addRow(row.toArray());
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, e.getMessage());
+        }
+    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel addressLabel;
@@ -317,12 +342,12 @@ public class ManageCustomer extends javax.swing.JPanel {
     private javax.swing.JTextField contactTxt;
     private javax.swing.JLabel customerID;
     private javax.swing.JButton deleteBtn;
+    private javax.swing.JTable detailsTabel;
     private javax.swing.JLabel emailLabel;
     private javax.swing.JTextField emailTxt;
     private javax.swing.JTextField idTxt;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JLabel nameLabel;
     private javax.swing.JTextField nameTxt;
     private javax.swing.JButton resetBtn;

@@ -7,7 +7,8 @@ package edu.ijse.mvc.swing.view;
 import edu.ijse.mvc.swing.controller.MeterReadingController;
 import edu.ijse.mvc.swing.dto.MeterReading;
 import javax.swing.*;
-import java.sql.Date;
+import javax.swing.table.DefaultTableModel;
+import java.util.ArrayList;
 
 /**
  *
@@ -22,6 +23,7 @@ public class ManageMeterReading extends javax.swing.JPanel {
      */
     public ManageMeterReading() {
         initComponents();
+        loadTable();
     }
 
     /**
@@ -46,7 +48,7 @@ public class ManageMeterReading extends javax.swing.JPanel {
         recordTxt = new javax.swing.JTextField();
         saveBtn = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        detailsTable = new javax.swing.JTable();
         updateBtn = new javax.swing.JButton();
         deleteBtn = new javax.swing.JButton();
         resetBtn = new javax.swing.JButton();
@@ -91,7 +93,7 @@ public class ManageMeterReading extends javax.swing.JPanel {
             }
         });
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        detailsTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
                 {null, null, null, null, null},
@@ -102,8 +104,8 @@ public class ManageMeterReading extends javax.swing.JPanel {
                 "reading_id", "meter_id", "reading_value", "reading_date", "recorded_by"
             }
         ));
-        jTable1.setRowHeight(25);
-        jScrollPane1.setViewportView(jTable1);
+        detailsTable.setRowHeight(25);
+        jScrollPane1.setViewportView(detailsTable);
 
         updateBtn.setBackground(new java.awt.Color(0, 102, 204));
         updateBtn.setFont(new java.awt.Font("Liberation Sans", 1, 15)); // NOI18N
@@ -277,6 +279,7 @@ public class ManageMeterReading extends javax.swing.JPanel {
             String rsp = meterReadingController.saveMeterReading(meterReading);
             JOptionPane.showMessageDialog(this,rsp);
             reset();
+            loadTable();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this,e.getMessage());
         }
@@ -298,6 +301,7 @@ public class ManageMeterReading extends javax.swing.JPanel {
             String rsp = meterReadingController.updateMeterReading(meterReading);
             JOptionPane.showMessageDialog(this, rsp);
             reset();
+            loadTable();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this,e.getMessage());
         }
@@ -309,19 +313,42 @@ public class ManageMeterReading extends javax.swing.JPanel {
             String rsp = meterReadingController.deleteMeterReading(readingID.getText());
             JOptionPane.showMessageDialog(this,rsp);
             reset();
+            loadTable();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this,e.getMessage());
             reset();
         }
     }
 
+    public void loadTable(){
+
+        DefaultTableModel dtm = (DefaultTableModel) detailsTable.getModel();
+        dtm.setRowCount(0);
+
+        try {
+            for (MeterReading meterReading : meterReadingController.getAllReading()){
+                ArrayList <Object> row = new ArrayList<>();
+                row.add(meterReading.getReadingId());
+                row.add(meterReading.getMeterId());
+                row.add(meterReading.getReadingValue());
+                row.add(meterReading.getReadingDate());
+                row.add(meterReading.getRecorderdBy());
+                dtm.addRow(row.toArray());
+            }
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this,e.getMessage());
+        }
+
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel dateLabel;
     private de.wannawork.jcalendar.JCalendarComboBox datePicker;
     private javax.swing.JButton deleteBtn;
+    private javax.swing.JTable detailsTable;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JLabel meterIDLabel;
     private javax.swing.JTextField meterIDTxt;
     private javax.swing.JLabel readingID;
