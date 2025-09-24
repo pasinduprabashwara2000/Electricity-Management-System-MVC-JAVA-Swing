@@ -254,7 +254,7 @@ public class ManageMainMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_logOutBtnActionPerformed
 
     private void employeeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_employeeBtnActionPerformed
-        // TODO add your handling code here:
+        loadUI("employee");
     }//GEN-LAST:event_employeeBtnActionPerformed
 
     /**
@@ -307,6 +307,10 @@ public class ManageMainMenu extends javax.swing.JFrame {
             case "payment" :
                 panelToLoad = new ManagePayment();
                 break;
+            case "employee" :
+                panelToLoad = new ManageEmployee();
+                break;
+
         }
 
         if(panelToLoad != null){

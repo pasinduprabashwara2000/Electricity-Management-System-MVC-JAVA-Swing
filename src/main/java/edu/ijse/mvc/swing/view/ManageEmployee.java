@@ -4,22 +4,22 @@
  */
 package edu.ijse.mvc.swing.view;
 
-import edu.ijse.mvc.swing.controller.TariffController;
-import edu.ijse.mvc.swing.dto.TariffDto;
+import edu.ijse.mvc.swing.controller.EmployeeController;
+import edu.ijse.mvc.swing.dto.EmployeeDto;
+
 import javax.swing.*;
 
 /**
  *
  * @author lenovo
  */
-public class ManageTariff extends javax.swing.JPanel {
+public class ManageEmployee extends javax.swing.JPanel {
 
-    private final TariffController tariffController = new TariffController();
-
+    private final EmployeeController employeeController = new EmployeeController();
     /**
      * Creates new form ManageCustomer
      */
-    public ManageTariff() {
+    public ManageEmployee() {
         initComponents();
     }
 
@@ -34,49 +34,46 @@ public class ManageTariff extends javax.swing.JPanel {
 
         jPanel1 = new javax.swing.JPanel();
         titleLabel = new javax.swing.JLabel();
-        tariffIDLabel = new javax.swing.JLabel();
-        tariffIDTxt = new javax.swing.JTextField();
+        customerID = new javax.swing.JLabel();
+        idTxt = new javax.swing.JTextField();
         nameLabel = new javax.swing.JLabel();
         nameTxt = new javax.swing.JTextField();
-        effectiveFromLabel = new javax.swing.JLabel();
-        effectiveToLabel = new javax.swing.JLabel();
-        chargeLabel = new javax.swing.JLabel();
-        chargeTxt = new javax.swing.JTextField();
+        addressLabel = new javax.swing.JLabel();
+        addressTxt = new javax.swing.JTextField();
+        contactNo = new javax.swing.JLabel();
+        contactTxt = new javax.swing.JTextField();
         saveBtn = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         updateBtn = new javax.swing.JButton();
         deleteBtn = new javax.swing.JButton();
         resetBtn = new javax.swing.JButton();
-        datePicker = new de.wannawork.jcalendar.JCalendarComboBox();
-        datePicker2 = new de.wannawork.jcalendar.JCalendarComboBox();
 
         jPanel1.setBackground(new java.awt.Color(204, 255, 255));
         jPanel1.setPreferredSize(new java.awt.Dimension(1052, 768));
 
         titleLabel.setFont(new java.awt.Font("Liberation Sans", 1, 24)); // NOI18N
-        titleLabel.setText("Tariff Management System");
+        titleLabel.setText("Employee Management System");
 
-        tariffIDLabel.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
-        tariffIDLabel.setText("Tariff ID :");
+        customerID.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
+        customerID.setText("EMP ID :");
 
-        tariffIDTxt.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
+        idTxt.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
 
         nameLabel.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
         nameLabel.setText("Name :");
 
         nameTxt.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
 
-        effectiveFromLabel.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
-        effectiveFromLabel.setText("Effective From :");
+        addressLabel.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
+        addressLabel.setText("Address :");
 
-        effectiveToLabel.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
-        effectiveToLabel.setText("Effective To :");
+        addressTxt.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
 
-        chargeLabel.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
-        chargeLabel.setText("Fixed Charge : ");
+        contactNo.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
+        contactNo.setText("Contact No :");
 
-        chargeTxt.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
+        contactTxt.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
 
         saveBtn.setBackground(new java.awt.Color(0, 102, 204));
         saveBtn.setFont(new java.awt.Font("Liberation Sans", 1, 15)); // NOI18N
@@ -90,13 +87,13 @@ public class ManageTariff extends javax.swing.JPanel {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "tariff_id", "tariff_name", "elective_from", "elective_to", "fixed_charge"
+                "id", "name", "address", "contact"
             }
         ));
         jTable1.setRowHeight(25);
@@ -142,40 +139,36 @@ public class ManageTariff extends javax.swing.JPanel {
                         .addGap(25, 25, 25)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(titleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 367, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 987, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(20, 20, 20)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(customerID, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(addressLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 146, Short.MAX_VALUE))
+                                .addGap(1, 1, 1)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(chargeLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(1, 1, 1)
-                                        .addComponent(chargeTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(tariffIDLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 146, Short.MAX_VALUE)
-                                            .addComponent(effectiveFromLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                        .addGap(1, 1, 1)
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(tariffIDTxt, javax.swing.GroupLayout.DEFAULT_SIZE, 267, Short.MAX_VALUE)
-                                            .addComponent(datePicker, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                        .addGap(55, 55, 55)
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(effectiveToLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(nameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(1, 1, 1)
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(nameTxt, javax.swing.GroupLayout.DEFAULT_SIZE, 267, Short.MAX_VALUE)
-                                            .addComponent(datePicker2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))))
+                                    .addComponent(addressTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(idTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(55, 55, 55)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(contactNo, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(nameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(1, 1, 1)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(nameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(contactTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(188, 188, 188)
+                        .addGap(180, 180, 180)
                         .addComponent(saveBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(28, 28, 28)
                         .addComponent(updateBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(28, 28, 28)
                         .addComponent(deleteBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(28, 28, 28)
-                        .addComponent(resetBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(40, Short.MAX_VALUE))
+                        .addComponent(resetBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(17, 17, 17)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 987, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(60, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -186,62 +179,58 @@ public class ManageTariff extends javax.swing.JPanel {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(nameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(19, 19, 19)
+                        .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(effectiveToLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(datePicker2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(1, 1, 1)
+                                .addComponent(contactNo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(contactTxt)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(tariffIDLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(customerID, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(tariffIDTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(idTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(nameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(effectiveFromLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 39, Short.MAX_VALUE)
-                            .addComponent(datePicker, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(chargeTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(chargeLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(29, 29, 29)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(addressLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(1, 1, 1)
+                                .addComponent(addressTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 6, Short.MAX_VALUE)))
+                .addGap(30, 30, 30)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(saveBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(updateBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(deleteBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(resetBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(30, 30, 30)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 662, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(43, 43, 43))
+                .addGap(39, 39, 39)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 458, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(33, 33, 33))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1064, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 780, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void saveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBtnActionPerformed
-        saveTariff();
+        saveEmployee();
     }//GEN-LAST:event_saveBtnActionPerformed
 
     private void updateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateBtnActionPerformed
-       updateTariff();
+       updateEmployee();
     }//GEN-LAST:event_updateBtnActionPerformed
 
     private void deleteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBtnActionPerformed
-        deleteTariff();
+        deleteEmployee();
     }//GEN-LAST:event_deleteBtnActionPerformed
 
     private void resetBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resetBtnActionPerformed
@@ -249,55 +238,37 @@ public class ManageTariff extends javax.swing.JPanel {
     }//GEN-LAST:event_resetBtnActionPerformed
 
     public void reset() {
-        tariffIDTxt.setText("");
+        idTxt.setText("");
         nameTxt.setText("");
-        datePicker.setDate(null);
-        datePicker2.setDate(null);
-        chargeTxt.setText("");
+        addressTxt.setText("");
+        contactTxt.setText("");
     }
 
-    public void saveTariff() {
+    public void saveEmployee() {
         try {
-
-            java.util.Date utilDate = datePicker.getDate();
-            java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
-
-            java.util.Date utilDate2 = datePicker2.getDate();
-            java.sql.Date sqlDate2 = new java.sql.Date(utilDate2.getTime());
-
-            TariffDto tariffDto = new TariffDto(
-              tariffIDTxt.getText(),
+            EmployeeDto employeeDto = new EmployeeDto(
+              idTxt.getText(),
               nameTxt.getText(),
-                    sqlDate,
-                    sqlDate2,
-                    Double.parseDouble(chargeTxt.getText())
+              addressTxt.getText(),
+              Integer.parseInt(contactTxt.getText())
             );
-            String rsp = tariffController.addTariff(tariffDto);
+            String rsp = employeeController.addEmployee(employeeDto);
             JOptionPane.showMessageDialog(this,rsp);
             reset();
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, e.getMessage());
+            JOptionPane.showMessageDialog(this,e.getMessage());
         }
     }
-
-    public void updateTariff() {
-
+    
+    public void updateEmployee() {
         try {
-
-            java.util.Date utilDate = datePicker.getDate();
-            java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
-
-            java.util.Date utilDate2 = datePicker2.getDate();
-            java.sql.Date sqlDate2 = new java.sql.Date(utilDate2.getTime());
-
-            TariffDto tariffDto = new TariffDto(
-                    tariffIDTxt.getText(),
+            EmployeeDto employeeDto = new EmployeeDto(
+                    idTxt.getText(),
                     nameTxt.getText(),
-                    sqlDate,
-                    sqlDate2,
-                    Double.parseDouble(chargeTxt.getText())
+                    addressTxt.getText(),
+                    Integer.parseInt(contactTxt.getText())
             );
-            String rsp = tariffController.updateTariff(tariffDto);
+            String rsp = employeeController.updateEmployee(employeeDto);
             JOptionPane.showMessageDialog(this,rsp);
             reset();
         } catch (Exception e) {
@@ -305,9 +276,9 @@ public class ManageTariff extends javax.swing.JPanel {
         }
     }
 
-    public void deleteTariff() {
+    public void deleteEmployee() {
         try {
-            String rsp = tariffController.deleteTariff(tariffIDTxt.getText());
+            String rsp = employeeController.deleteEmployee(idTxt.getText());
             JOptionPane.showMessageDialog(this,rsp);
             reset();
         } catch (Exception e) {
@@ -316,13 +287,13 @@ public class ManageTariff extends javax.swing.JPanel {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel chargeLabel;
-    private javax.swing.JTextField chargeTxt;
-    private de.wannawork.jcalendar.JCalendarComboBox datePicker;
-    private de.wannawork.jcalendar.JCalendarComboBox datePicker2;
+    private javax.swing.JLabel addressLabel;
+    private javax.swing.JTextField addressTxt;
+    private javax.swing.JLabel contactNo;
+    private javax.swing.JTextField contactTxt;
+    private javax.swing.JLabel customerID;
     private javax.swing.JButton deleteBtn;
-    private javax.swing.JLabel effectiveFromLabel;
-    private javax.swing.JLabel effectiveToLabel;
+    private javax.swing.JTextField idTxt;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
@@ -330,8 +301,6 @@ public class ManageTariff extends javax.swing.JPanel {
     private javax.swing.JTextField nameTxt;
     private javax.swing.JButton resetBtn;
     private javax.swing.JButton saveBtn;
-    private javax.swing.JLabel tariffIDLabel;
-    private javax.swing.JTextField tariffIDTxt;
     private javax.swing.JLabel titleLabel;
     private javax.swing.JButton updateBtn;
     // End of variables declaration//GEN-END:variables

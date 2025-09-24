@@ -264,11 +264,14 @@ public class ManageMeterReading extends javax.swing.JPanel {
     public void saveMeterReading() {
 
         try {
+            java.util.Date utilDate = datePicker.getDate();
+            java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
+
             MeterReading meterReading =new MeterReading(
                     readingIDTxt.getText(),
                     meterIDTxt.getText(),
                     Integer.parseInt(readingValueTxt.getText()),
-                    (Date) datePicker.getDate(),
+                    sqlDate,
                     recordTxt.getText()
             );
             String rsp = meterReadingController.saveMeterReading(meterReading);
@@ -282,11 +285,14 @@ public class ManageMeterReading extends javax.swing.JPanel {
 
     public void updateMeterReading() {
         try {
+            java.util.Date utilDate = datePicker.getDate();
+            java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
+
             MeterReading meterReading = new MeterReading(
                     readingIDTxt.getText(),
                     meterIDTxt.getText(),
                     Integer.parseInt(readingValueTxt.getText()),
-                    (Date) datePicker.getDate(),
+                    sqlDate,
                     recordTxt.getText()
             );
             String rsp = meterReadingController.updateMeterReading(meterReading);
