@@ -7,7 +7,9 @@ package edu.ijse.mvc.swing.view;
 import edu.ijse.mvc.swing.controller.PaymentController;
 import edu.ijse.mvc.swing.dto.PaymentDto;
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 import java.sql.Date;
+import java.util.ArrayList;
 
 /**
  *
@@ -22,6 +24,7 @@ public class ManagePayment extends javax.swing.JPanel {
      */
     public ManagePayment() {
         initComponents();
+        loadTable();
     }
 
     /**
@@ -45,7 +48,7 @@ public class ManagePayment extends javax.swing.JPanel {
         methodLabel = new javax.swing.JLabel();
         saveBtn = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        detailsTabel = new javax.swing.JTable();
         updateBtn = new javax.swing.JButton();
         deleteBtn = new javax.swing.JButton();
         resetBtn = new javax.swing.JButton();
@@ -89,7 +92,7 @@ public class ManagePayment extends javax.swing.JPanel {
             }
         });
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        detailsTabel.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
                 {null, null, null, null, null},
@@ -100,8 +103,8 @@ public class ManagePayment extends javax.swing.JPanel {
                 "payment_id", "invoice_id", "paid_amount", "payment_date", "method"
             }
         ));
-        jTable1.setRowHeight(25);
-        jScrollPane1.setViewportView(jTable1);
+        detailsTabel.setRowHeight(25);
+        jScrollPane1.setViewportView(detailsTabel);
 
         updateBtn.setBackground(new java.awt.Color(0, 102, 204));
         updateBtn.setFont(new java.awt.Font("Liberation Sans", 1, 15)); // NOI18N
@@ -259,17 +262,22 @@ public class ManagePayment extends javax.swing.JPanel {
     }
 
     public void savePayment() {
+
+        java.util.Date utilDate = datePicker.getDate();
+        java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
+
         try{
             PaymentDto paymentDto = new PaymentDto(
                     paymentIDTxt.getText(),
                     invoiceTxt.getText(),
                     Double.parseDouble(paidAmountTxt.getText()),
-                    (Date) datePicker.getDate(),
+                    sqlDate,
                     methodPicker.getSelectedItem().toString()
             );
             String rsp = paymentController.addPayment(paymentDto);
             JOptionPane.showMessageDialog(this,rsp);
             reset();
+            loadTable();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this,e.getMessage());
         }
@@ -277,17 +285,22 @@ public class ManagePayment extends javax.swing.JPanel {
     }
 
     public void updatePayment() {
+
+        java.util.Date utilDate = datePicker.getDate();
+        java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
+
         try {
             PaymentDto paymentDto = new PaymentDto(
                     paymentIDTxt.getText(),
                     invoiceTxt.getText(),
                     Double.parseDouble(paidAmountTxt.getText()),
-                    (Date) datePicker.getDate(),
+                    sqlDate,
                     methodPicker.getSelectedItem().toString()
             );
             String rsp = paymentController.updatePayment(paymentDto);
             JOptionPane.showMessageDialog(this,rsp);
             reset();
+            loadTable();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this,e.getMessage());
         }
@@ -298,19 +311,40 @@ public class ManagePayment extends javax.swing.JPanel {
             String rsp = paymentController.deletePayment(paymentIDTxt.getText());
             JOptionPane.showMessageDialog(this,rsp);
             reset();
+            loadTable();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this,e.getMessage());
+        }
+    }
+
+    public void loadTable(){
+
+        DefaultTableModel dtm = (DefaultTableModel) detailsTabel.getModel();
+        dtm.setRowCount(0);
+
+        try {
+            for (PaymentDto paymentDto : paymentController.getAllPayment()){
+                ArrayList <Object> row = new ArrayList<>();
+                row.add(paymentDto.getId());
+                row.add(paymentDto.getInvoiceID());
+                row.add(paymentDto.getPaidAmount());
+                row.add(paymentDto.getPaymentDate());
+                row.add(paymentDto.getMethod());
+                dtm.addRow(row.toArray());
+            }
+        } catch (Exception e) {
+                JOptionPane.showMessageDialog(this,e.getMessage());
         }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private de.wannawork.jcalendar.JCalendarComboBox datePicker;
     private javax.swing.JButton deleteBtn;
+    private javax.swing.JTable detailsTabel;
     private javax.swing.JLabel invoiceIDLabel;
     private javax.swing.JTextField invoiceTxt;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JLabel methodLabel;
     private javax.swing.JComboBox<String> methodPicker;
     private javax.swing.JLabel paidAmountLabel;

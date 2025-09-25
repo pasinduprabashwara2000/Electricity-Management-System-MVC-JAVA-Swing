@@ -5,11 +5,11 @@
 package edu.ijse.mvc.swing.view;
 
 import edu.ijse.mvc.swing.controller.InvoiceController;
-import edu.ijse.mvc.swing.dto.CustomerDto;
 import edu.ijse.mvc.swing.dto.InvoiceDto;
 
 import javax.swing.*;
-import java.sql.Date;
+import javax.swing.table.DefaultTableModel;
+import java.util.ArrayList;
 
 /**
  *
@@ -23,6 +23,7 @@ public class ManageInvoice extends javax.swing.JPanel {
      */
     public ManageInvoice() {
         initComponents();
+        loadTable();
     }
 
     /**
@@ -45,7 +46,7 @@ public class ManageInvoice extends javax.swing.JPanel {
         periodStartLabel = new javax.swing.JLabel();
         saveBtn = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        detailsTabel = new javax.swing.JTable();
         updateBtn = new javax.swing.JButton();
         deleteBtn = new javax.swing.JButton();
         resetBtn = new javax.swing.JButton();
@@ -57,7 +58,8 @@ public class ManageInvoice extends javax.swing.JPanel {
         statusLabel = new javax.swing.JLabel();
         statusPicker = new javax.swing.JComboBox<>();
         amountTxt = new javax.swing.JLabel();
-        totalAmountBtn = new javax.swing.JButton();
+        totalAmountLabel = new javax.swing.JLabel();
+        calculateBtn = new javax.swing.JButton();
 
         setPreferredSize(new java.awt.Dimension(1052, 768));
 
@@ -95,7 +97,7 @@ public class ManageInvoice extends javax.swing.JPanel {
             }
         });
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        detailsTabel.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null},
@@ -106,8 +108,8 @@ public class ManageInvoice extends javax.swing.JPanel {
                 "invoice_id", "customer_id", "meter_id", "consumption_units", "period_start", "period_end", "status", "total_amount"
             }
         ));
-        jTable1.setRowHeight(25);
-        jScrollPane1.setViewportView(jTable1);
+        detailsTabel.setRowHeight(25);
+        jScrollPane1.setViewportView(detailsTabel);
 
         updateBtn.setBackground(new java.awt.Color(0, 102, 204));
         updateBtn.setFont(new java.awt.Font("Liberation Sans", 1, 15)); // NOI18N
@@ -145,19 +147,25 @@ public class ManageInvoice extends javax.swing.JPanel {
         unitsLabel.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
         unitsLabel.setText("Consumption Units :");
 
-        materIDTxt.setMinimumSize(new java.awt.Dimension(64, 28));
+        materIDTxt.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
 
         statusLabel.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
         statusLabel.setText("Status");
 
         statusPicker.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Draft ", "Pending / Open", "Sent / Issued", "Partially Paid", "Paid", "Overdue / Past Due", "Cancelled / Voided", "Rejected / Disputed", "Refunded / Credited", "Written Off" }));
 
-        totalAmountBtn.setBackground(new java.awt.Color(153, 255, 0));
-        totalAmountBtn.setFont(new java.awt.Font("Liberation Sans", 1, 15)); // NOI18N
-        totalAmountBtn.setText("Total Amount :");
-        totalAmountBtn.addActionListener(new java.awt.event.ActionListener() {
+        amountTxt.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
+
+        totalAmountLabel.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
+        totalAmountLabel.setText("Total Amount :");
+
+        calculateBtn.setBackground(new java.awt.Color(102, 255, 0));
+        calculateBtn.setFont(new java.awt.Font("Liberation Sans", 1, 15)); // NOI18N
+        calculateBtn.setForeground(new java.awt.Color(51, 51, 51));
+        calculateBtn.setText("Calculate");
+        calculateBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                totalAmountBtnActionPerformed(evt);
+                calculateBtnActionPerformed(evt);
             }
         });
 
@@ -172,49 +180,51 @@ public class ManageInvoice extends javax.swing.JPanel {
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 987, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(20, 20, 20)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(invoiceIDLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(periodStartLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 149, Short.MAX_VALUE)
-                            .addComponent(statusLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(335, 335, 335)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(customerIDLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(periodEndLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(CustomerIDTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(endDatePicker, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(unitsLabel)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(unitsTxt)
-                                    .addComponent(amountTxt, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(meterIDLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(1, 1, 1)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(meterIDLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(1, 1, 1)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(invoiceIDTxt)
                                     .addComponent(startDatePicker, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(materIDTxt, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(materIDTxt)
                                     .addComponent(statusPicker, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(totalAmountBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(191, 191, 191))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(saveBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(28, 28, 28)
-                                .addComponent(updateBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(28, 28, 28)
-                                .addComponent(deleteBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(28, 28, 28)
-                                .addComponent(resetBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(131, 131, 131)))
-                .addContainerGap(52, Short.MAX_VALUE))
+                                .addComponent(totalAmountLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(322, 322, 322))
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addComponent(calculateBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(27, 27, 27)
+                                    .addComponent(saveBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(28, 28, 28)
+                                    .addComponent(updateBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(28, 28, 28)
+                                    .addComponent(deleteBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(28, 28, 28)
+                                    .addComponent(resetBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(invoiceIDLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(periodStartLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 149, Short.MAX_VALUE)
+                                        .addComponent(statusLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addGap(335, 335, 335)
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(customerIDLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(periodEndLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addGap(18, 18, 18)
+                                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                                .addComponent(CustomerIDTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(endDatePicker, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                            .addComponent(unitsLabel)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(unitsTxt)
+                                                .addComponent(amountTxt, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))))))
+                .addContainerGap(40, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -252,8 +262,8 @@ public class ManageInvoice extends javax.swing.JPanel {
                                 .addComponent(statusLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(statusPicker, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(amountTxt, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(totalAmountBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(63, 63, 63))
+                            .addComponent(totalAmountLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(43, 43, 43))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(invoiceIDTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(17, 17, 17)
@@ -263,8 +273,9 @@ public class ManageInvoice extends javax.swing.JPanel {
                     .addComponent(saveBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(updateBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(deleteBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(resetBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(35, 35, 35)
+                    .addComponent(resetBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(calculateBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(43, 43, 43)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 328, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(25, 25, 25))
         );
@@ -273,11 +284,11 @@ public class ManageInvoice extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1064, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 780, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -296,10 +307,42 @@ public class ManageInvoice extends javax.swing.JPanel {
     private void resetBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resetBtnActionPerformed
        reset();
     }//GEN-LAST:event_resetBtnActionPerformed
+    
+    private void calculateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_calculateBtnActionPerformed
+       calculateTotalAmount();
+    }//GEN-LAST:event_calculateBtnActionPerformed
 
-    private void totalAmountBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_totalAmountBtnActionPerformed
-        calculateTotalAmount();
-    }//GEN-LAST:event_totalAmountBtnActionPerformed
+    public void calculateTotalAmount() {
+        try {
+            int units = Integer.parseInt(unitsTxt.getText().trim());
+            double bill = 0;
+
+            if (units <= 60) {
+                if (units <= 30) {
+                    bill = (units * 8) + 150;
+                } else {
+                    bill = (30 * 8) + ((units - 30) * 20) + 150;
+                }
+            } else {
+                bill = 400;
+                if (units <= 60) {
+                    bill += units * 30;
+                } else if (units <= 90) {
+                    bill += (60 * 30) + ((units - 60) * 37);
+                } else if (units <= 120) {
+                    bill += (60 * 30) + (30 * 37) + ((units - 90) * 42);
+                } else if (units <= 180) {
+                    bill += (60 * 30) + (30 * 37) + (30 * 42) + ((units - 120) * 50);
+                } else {
+                    bill += (60 * 30) + (30 * 37) + (30 * 42) + (60 * 50) + ((units - 180) * 75);
+                }
+            }
+
+            amountTxt.setText(String.valueOf(bill));
+        } catch (NumberFormatException e) {
+            amountTxt.setText("0");
+        }
+    }
 
     public void reset() {
         invoiceIDTxt.setText("");
@@ -314,13 +357,20 @@ public class ManageInvoice extends javax.swing.JPanel {
     }
 
     public void saveInvoice() {
+
+        java.util.Date utilDate = startDatePicker.getDate();
+        java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
+
+        java.util.Date utilDate2 = endDatePicker.getDate();
+        java.sql.Date sqlDate2 = new java.sql.Date(utilDate2.getTime());
+
         try {
             InvoiceDto invoiceDto = new InvoiceDto(
                     invoiceIDTxt.getText(),
                     CustomerIDTxt.getText(),
                     materIDTxt.getText(),
-                    (Date) startDatePicker.getDate(),
-                    (Date) endDatePicker.getDate(),
+                    sqlDate,
+                    sqlDate2,
                     Integer.parseInt(unitsTxt.getText()),
                     Double.parseDouble(amountTxt.getText()),
                     (String) statusPicker.getSelectedItem()
@@ -328,19 +378,27 @@ public class ManageInvoice extends javax.swing.JPanel {
             String rsp = invoiceController.addInvoice(invoiceDto);
             JOptionPane.showMessageDialog(this,rsp);
             reset();
+            loadTable();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this,e.getMessage());
         }
     }
 
     public void updateInvoice() {
+
+        java.util.Date utilDate = startDatePicker.getDate();
+        java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
+
+        java.util.Date utilDate2 = endDatePicker.getDate();
+        java.sql.Date sqlDate2 = new java.sql.Date(utilDate2.getTime());
+
         try {
             InvoiceDto invoiceDto = new InvoiceDto(
                     invoiceIDTxt.getText(),
                     CustomerIDTxt.getText(),
                     materIDTxt.getText(),
-                    (Date) startDatePicker.getDate(),
-                    (Date) endDatePicker.getDate(),
+                    sqlDate,
+                    sqlDate2,
                     Integer.parseInt(unitsTxt.getText()),
                     Double.parseDouble(amountTxt.getText()),
                     (String) statusPicker.getSelectedItem()
@@ -348,6 +406,7 @@ public class ManageInvoice extends javax.swing.JPanel {
             String rsp = invoiceController.updateInvoice(invoiceDto);
             JOptionPane.showMessageDialog(this,rsp);
             reset();
+            loadTable();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this,e.getMessage());
         }
@@ -358,26 +417,48 @@ public class ManageInvoice extends javax.swing.JPanel {
             String rsp = invoiceController.deleteInvoice(invoiceIDTxt.getText());
             JOptionPane.showMessageDialog(this,rsp);
             reset();
+            loadTable();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this,e.getMessage());
         }
     }
 
-    public void calculateTotalAmount(){
+    public void loadTable(){
 
+        DefaultTableModel dtm = (DefaultTableModel) detailsTabel.getModel();
+        dtm.setRowCount(0);
+
+        try {
+            for (InvoiceDto invoiceDto : invoiceController.getAllInvoice()){
+                ArrayList <Object> row = new ArrayList<>();
+                row.add(invoiceDto.getId());
+                row.add(invoiceDto.getCustomerID());
+                row.add(invoiceDto.getMeterID());
+                row.add(invoiceDto.getConsumptionUnits());
+                row.add(invoiceDto.getPeriodStart());
+                row.add(invoiceDto.getPeriodEnd());
+                row.add(invoiceDto.getTotal_amount());
+                row.add(invoiceDto.getStatus());
+                dtm.addRow(row.toArray());
+            }
+
+        } catch (Exception e) {
+                JOptionPane.showMessageDialog(this,e.getMessage());
+        }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField CustomerIDTxt;
     private javax.swing.JLabel amountTxt;
+    private javax.swing.JButton calculateBtn;
     private javax.swing.JLabel customerIDLabel;
     private javax.swing.JButton deleteBtn;
+    private javax.swing.JTable detailsTabel;
     private de.wannawork.jcalendar.JCalendarComboBox endDatePicker;
     private javax.swing.JLabel invoiceIDLabel;
     private javax.swing.JTextField invoiceIDTxt;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTextField materIDTxt;
     private javax.swing.JLabel meterIDLabel;
     private javax.swing.JLabel periodEndLabel;
@@ -388,7 +469,7 @@ public class ManageInvoice extends javax.swing.JPanel {
     private javax.swing.JLabel statusLabel;
     private javax.swing.JComboBox<String> statusPicker;
     private javax.swing.JLabel titleLabel;
-    private javax.swing.JButton totalAmountBtn;
+    private javax.swing.JLabel totalAmountLabel;
     private javax.swing.JLabel unitsLabel;
     private javax.swing.JTextField unitsTxt;
     private javax.swing.JButton updateBtn;

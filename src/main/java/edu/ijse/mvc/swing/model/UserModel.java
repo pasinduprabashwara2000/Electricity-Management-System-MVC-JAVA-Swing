@@ -13,7 +13,7 @@ public class UserModel {
     public boolean searchUser(UserDto userDto) throws Exception{
 
         Connection conn = DBConnection.getInstance().getConnection();
-        String sql = "SELECT user_name = ? AND password = ? WHERE role = ?";
+        String sql = "SELECT * FROM user WHERE user_name = ? AND password = ? AND role = ?";
         PreparedStatement st = conn.prepareStatement(sql);
         st.setString(1,userDto.getName());
         st.setString(2,userDto.getPassword());

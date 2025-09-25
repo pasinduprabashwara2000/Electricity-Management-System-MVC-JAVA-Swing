@@ -4,6 +4,7 @@
  */
 package edu.ijse.mvc.swing;
 
+import edu.ijse.mvc.swing.view.ManageLogin;
 import edu.ijse.mvc.swing.view.ManageMainMenu;
 
 /**
@@ -14,7 +15,7 @@ import edu.ijse.mvc.swing.view.ManageMainMenu;
 public class Main {
 
     public static void main(String args []) {
-        new ManageMainMenu().show();
+        new ManageLogin().show();
 
     }
 

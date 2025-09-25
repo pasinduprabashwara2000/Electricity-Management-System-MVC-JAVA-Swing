@@ -83,7 +83,7 @@ public class MeterModel {
 
         ResultSet rst = st.executeQuery();
 
-        if (rst.next()){
+        while (rst.next()){
             meterDtos.add(new MeterDto(
                     rst.getString("Meter_id"),
                     rst.getString("meter_type"),

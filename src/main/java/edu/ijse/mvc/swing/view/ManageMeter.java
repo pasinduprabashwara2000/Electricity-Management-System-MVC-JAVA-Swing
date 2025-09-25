@@ -94,13 +94,13 @@ ManageMeter extends javax.swing.JPanel {
 
         detailsTabel.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "id", "meter_type", "date", "status_type", "location"
+                "id", "meter_type", "date", "status_type", "location", "customer_id"
             }
         ));
         detailsTabel.setRowHeight(25);
