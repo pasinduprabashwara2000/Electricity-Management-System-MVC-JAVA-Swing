@@ -54,6 +54,7 @@ public class TariffSlabModel {
         Connection conn = DBConnection.getInstance().getConnection();
         String sql = "SELECT * FROM tariff_slab WHERE id = ?";
         PreparedStatement st = conn.prepareStatement(sql);
+        st.setString(1,id);
 
         ResultSet rst = st.executeQuery();
 

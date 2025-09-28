@@ -4,6 +4,7 @@
  */
 package edu.ijse.mvc.swing.view;
 
+import com.mysql.cj.xdevapi.Column;
 import edu.ijse.mvc.swing.controller.MeterController;
 import edu.ijse.mvc.swing.dto.MeterDto;
 
@@ -104,6 +105,11 @@ ManageMeter extends javax.swing.JPanel {
             }
         ));
         detailsTabel.setRowHeight(25);
+        detailsTabel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                detailsTabelMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(detailsTabel);
 
         updateBtn.setBackground(new java.awt.Color(0, 102, 204));
@@ -267,6 +273,10 @@ ManageMeter extends javax.swing.JPanel {
         reset();
     }//GEN-LAST:event_resetBtnActionPerformed
 
+    private void detailsTabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_detailsTabelMouseClicked
+        searchMeter();
+    }//GEN-LAST:event_detailsTabelMouseClicked
+
     public void reset() {
         meterIdTxt.setText("");
         meterTypeCmb.setSelectedIndex(-1);
@@ -327,6 +337,20 @@ ManageMeter extends javax.swing.JPanel {
             loadTable();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, e.getMessage());
+        }
+    }
+
+    public void searchMeter() {
+        try {
+            MeterDto meterDto = meterController.selectMeter((String) detailsTabel.getValueAt(detailsTabel.getSelectedRow(),0));
+            meterIdTxt.setText(meterDto.getMeterId());
+            meterTypeCmb.setSelectedItem(meterDto.getMeterType());
+            datePicker.setDate(meterDto.getInstallion_date());
+            statusCmb.setSelectedItem(meterDto.getStatus_type());
+            locationTxt.setText(meterDto.getLocation());
+            customerTxt.setText(meterDto.getCustomerID());
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this,e.getMessage());
         }
     }
 

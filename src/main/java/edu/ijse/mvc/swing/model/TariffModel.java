@@ -27,7 +27,7 @@ public class TariffModel {
     public String updateTariff(TariffDto tariffDto) throws Exception{
 
         Connection conn = DBConnection.getInstance().getConnection();
-        String sql = "UPDATE tariff SET name = ?, effective_from = ?, effective_to = ?, fixed_charge = ? WHERE id = ?";
+        String sql = "UPDATE tariff SET name = ?, elective_from = ?, elective_to = ?, fixed_charge = ? WHERE id = ?";
         PreparedStatement st = conn.prepareStatement(sql);
         st.setString(1,tariffDto.getName());
         st.setDate(2,tariffDto.getEffectiveFrom());
@@ -55,6 +55,7 @@ public class TariffModel {
         Connection conn = DBConnection.getInstance().getConnection();
         String sql = "SELECT * FROM tariff WHERE id = ?";
         PreparedStatement st = conn.prepareStatement(sql);
+        st.setString(1,id);
 
         ResultSet rst = st.executeQuery();
 

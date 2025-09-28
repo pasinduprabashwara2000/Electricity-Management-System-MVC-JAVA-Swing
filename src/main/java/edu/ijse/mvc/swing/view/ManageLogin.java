@@ -169,7 +169,9 @@ public class ManageLogin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void clearBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearBtnActionPerformed
-        // TODO add your handling code here:
+        userTxt.setText("");
+        passwordTxt.setText("");
+        rolePicker.setSelectedIndex(-1);
     }//GEN-LAST:event_clearBtnActionPerformed
 
     private void loginBtnActionPerformed(java.awt.event.ActionEvent evt) {

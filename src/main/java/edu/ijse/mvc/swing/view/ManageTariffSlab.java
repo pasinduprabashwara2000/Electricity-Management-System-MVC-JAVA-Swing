@@ -4,11 +4,8 @@
  */
 package edu.ijse.mvc.swing.view;
 
-import edu.ijse.mvc.swing.controller.CustomerController;
 import edu.ijse.mvc.swing.controller.TariffSlabController;
-import edu.ijse.mvc.swing.dto.CustomerDto;
 import edu.ijse.mvc.swing.dto.TariffSlabDto;
-
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.util.ArrayList;
@@ -118,6 +115,11 @@ public class ManageTariffSlab extends javax.swing.JPanel {
             }
         });
         detailsTabel.setRowHeight(25);
+        detailsTabel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                detailsTabelMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(detailsTabel);
 
         updateBtn.setBackground(new java.awt.Color(0, 102, 204));
@@ -263,12 +265,16 @@ public class ManageTariffSlab extends javax.swing.JPanel {
     }//GEN-LAST:event_updateBtnActionPerformed
 
     private void deleteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBtnActionPerformed
-        deleteCustomer();
+        deleteTariffSlab();
     }//GEN-LAST:event_deleteBtnActionPerformed
 
     private void resetBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resetBtnActionPerformed
        reset();
     }//GEN-LAST:event_resetBtnActionPerformed
+
+    private void detailsTabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_detailsTabelMouseClicked
+        searchTariffSlab();
+    }//GEN-LAST:event_detailsTabelMouseClicked
 
     public void reset() {
         idTxt.setText("");
@@ -314,12 +320,25 @@ public class ManageTariffSlab extends javax.swing.JPanel {
         }
     }
 
-    public void deleteCustomer() {
+    public void deleteTariffSlab() {
         try {
             String rsp = tariffSlabController.deleteTariffSlab(idTxt.getText());
             JOptionPane.showMessageDialog(this,rsp);
             reset();
             loadTable();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this,e.getMessage());
+        }
+    }
+
+    public void searchTariffSlab() {
+        try {
+            TariffSlabDto tariffSlabDto = tariffSlabController.searchTariffSlab((String) detailsTabel.getValueAt(detailsTabel.getSelectedRow(),0));
+            idTxt.setText(tariffSlabDto.getTariffID());
+            tariffIDTxt.setText(tariffSlabDto.getTariffID());
+            fromUnitTxt.setText(String.valueOf(tariffSlabDto.getFromUnit()));
+            toUnitTxt.setText(String.valueOf(tariffSlabDto.getToUnit()));
+            ratePerTxt.setText(String.valueOf(tariffSlabDto.getRatePerUnit()));
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this,e.getMessage());
         }
@@ -343,6 +362,8 @@ public class ManageTariffSlab extends javax.swing.JPanel {
         } catch (Exception e) {
                 JOptionPane.showMessageDialog(this,e.getMessage());
         }
+
+
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

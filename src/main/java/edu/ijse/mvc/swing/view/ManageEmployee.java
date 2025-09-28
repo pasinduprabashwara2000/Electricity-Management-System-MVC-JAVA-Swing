@@ -99,6 +99,11 @@ public class ManageEmployee extends javax.swing.JPanel {
             }
         ));
         detailsTabel.setRowHeight(25);
+        detailsTabel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                detailsTabelMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(detailsTabel);
 
         updateBtn.setBackground(new java.awt.Color(0, 102, 204));
@@ -239,6 +244,10 @@ public class ManageEmployee extends javax.swing.JPanel {
        reset();
     }//GEN-LAST:event_resetBtnActionPerformed
 
+    private void detailsTabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_detailsTabelMouseClicked
+        searchEmployee();
+    }//GEN-LAST:event_detailsTabelMouseClicked
+
     public void reset() {
         idTxt.setText("");
         nameTxt.setText("");
@@ -286,6 +295,18 @@ public class ManageEmployee extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this,rsp);
             reset();
             loadTable();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this,e.getMessage());
+        }
+    }
+
+    public void searchEmployee(){
+        try {
+            EmployeeDto employeeDto = employeeController.searchEmployee((String) detailsTabel.getValueAt(detailsTabel.getSelectedRow(),0));
+            idTxt.setText(employeeDto.getEmpID());
+            nameTxt.setText(employeeDto.getName());
+            addressTxt.setText(employeeDto.getAddress());
+            contactTxt.setText(String.valueOf(employeeDto.getContactNo()));
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this,e.getMessage());
         }

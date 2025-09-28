@@ -107,6 +107,11 @@ public class ManageCustomer extends javax.swing.JPanel {
             }
         ));
         detailsTabel.setRowHeight(25);
+        detailsTabel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                detailsTabelMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(detailsTabel);
 
         updateBtn.setBackground(new java.awt.Color(0, 102, 204));
@@ -259,6 +264,10 @@ public class ManageCustomer extends javax.swing.JPanel {
        reset();
     }//GEN-LAST:event_resetBtnActionPerformed
 
+    private void detailsTabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_detailsTabelMouseClicked
+        searchCustomer();
+    }//GEN-LAST:event_detailsTabelMouseClicked
+
     public void reset() {
         idTxt.setText("");
         nameTxt.setText("");
@@ -314,6 +323,22 @@ public class ManageCustomer extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, e.getMessage());
         }
     }
+
+    public void searchCustomer() {
+        try {
+            CustomerDto customer = customerController.searchCustomer(
+                    (String) detailsTabel.getValueAt(detailsTabel.getSelectedRow(), 0)
+            );
+            idTxt.setText(customer.getCustomerId());
+            nameTxt.setText(customer.getCustomerName());
+            addressTxt.setText(customer.getCustomerAddress());
+            contactTxt.setText(String.valueOf(customer.getCustomerContact()));
+            emailTxt.setText(customer.getCustomerEmail());
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, e.getMessage());
+        }
+    }
+
 
     public void loadTable() {
         DefaultTableModel dtm = (DefaultTableModel) detailsTabel.getModel();

@@ -105,6 +105,11 @@ public class ManageMeterReading extends javax.swing.JPanel {
             }
         ));
         detailsTable.setRowHeight(25);
+        detailsTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                detailsTableMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(detailsTable);
 
         updateBtn.setBackground(new java.awt.Color(0, 102, 204));
@@ -255,6 +260,10 @@ public class ManageMeterReading extends javax.swing.JPanel {
        reset();
     }//GEN-LAST:event_resetBtnActionPerformed
 
+    private void detailsTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_detailsTableMouseClicked
+        searchMeterReading();
+    }//GEN-LAST:event_detailsTableMouseClicked
+
     public void reset() {
         readingIDTxt.setText("");
         meterIDTxt.setText("");
@@ -317,6 +326,19 @@ public class ManageMeterReading extends javax.swing.JPanel {
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this,e.getMessage());
             reset();
+        }
+    }
+
+    public void searchMeterReading() {
+        try {
+            MeterReading meterReading = meterReadingController.searchReading((String) detailsTable.getValueAt(detailsTable.getSelectedRow(),0));
+            readingIDTxt.setText(meterReading.getMeterId());
+            meterIDTxt.setText(meterReading.getMeterId());
+            readingIDTxt.setText(meterReading.getReadingId());
+            datePicker.setDate(meterReading.getReadingDate());
+            recordTxt.setText(meterReading.getRecorderdBy());
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this,e.getMessage());
         }
     }
 

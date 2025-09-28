@@ -56,6 +56,7 @@ public class PaymentModel {
         Connection conn = DBConnection.getInstance().getConnection();
         String sql = "SELECT * FROM payment WHERE id = ?";
         PreparedStatement st = conn.prepareStatement(sql);
+        st.setString(1,id);
 
         ResultSet rst = st.executeQuery();
 

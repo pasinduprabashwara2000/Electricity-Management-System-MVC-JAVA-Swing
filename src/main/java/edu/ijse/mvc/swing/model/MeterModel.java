@@ -28,7 +28,7 @@ public class MeterModel {
     public String updateMeter(MeterDto meterDto) throws Exception {
 
         Connection conn = DBConnection.getInstance().getConnection();
-        String sql = "UPDATE meter SET meter_type = ? , installion_date = ? , stutus_type = ? ,location = ? , customer_id = ? WHERE meter_id = ?";
+        String sql = "UPDATE meter SET meter_type = ? , date = ? , status_type = ? ,location = ? , customer_id = ? WHERE meter_id = ?";
         PreparedStatement st = conn.prepareStatement(sql);
         st.setObject(1, meterDto.getMeterType());
         st.setDate(2, meterDto.getInstallion_date());
@@ -46,6 +46,7 @@ public class MeterModel {
         Connection conn = DBConnection.getInstance().getConnection();
         String sql = "DELETE FROM meter WHERE meter_id = ?";
         PreparedStatement st = conn.prepareStatement(sql);
+        st.setString(1,id);
 
         return st.executeUpdate() > 0 ? "Meter Details Deleted" : "Meter Details Deleted Failed";
     }

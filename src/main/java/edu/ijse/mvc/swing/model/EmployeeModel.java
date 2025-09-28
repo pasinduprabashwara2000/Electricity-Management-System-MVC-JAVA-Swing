@@ -50,8 +50,9 @@ public class EmployeeModel {
     public EmployeeDto searchEmployee(String id) throws Exception{
 
         Connection conn = DBConnection.getInstance().getConnection();
-        String sql = "SEARCH * FROM employee WHERE emp_id = ?";
+        String sql = "SELECT * FROM employee WHERE emp_id = ?";
         PreparedStatement st = conn.prepareStatement(sql);
+        st.setString(1,id);
 
         ResultSet rst = st.executeQuery();
 

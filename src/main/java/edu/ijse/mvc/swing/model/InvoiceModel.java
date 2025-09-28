@@ -1,7 +1,10 @@
 package edu.ijse.mvc.swing.model;
 
 import edu.ijse.mvc.swing.db.DBConnection;
+import edu.ijse.mvc.swing.dto.CalculationDto;
 import edu.ijse.mvc.swing.dto.InvoiceDto;
+import edu.ijse.mvc.swing.dto.TariffDto;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -30,7 +33,7 @@ public class InvoiceModel {
     public String updateInvoice(InvoiceDto invoiceDto) throws Exception{
 
         Connection conn = DBConnection.getInstance().getConnection();
-        String sql = "UPDATE invoice SET customer_id = ?, meter_id = ?, period_start =?, period_end = ?,consumption_units = ?, total_amount = ?, status = ? WHERE id = ?";
+        String sql = "UPDATE invoice SET customer_id = ?, meter_id = ?, period_start =?, period_end = ?, consumption_unit = ?, total_amount = ?, status = ? WHERE id = ?";
         PreparedStatement st = conn.prepareStatement(sql);
         st.setString(1,invoiceDto.getCustomerID());
         st.setString(2,invoiceDto.getMeterID());
@@ -61,6 +64,7 @@ public class InvoiceModel {
         Connection conn = DBConnection.getInstance().getConnection();
         String sql = "SELECT * FROM invoice WHERE id = ?";
         PreparedStatement st = conn.prepareStatement(sql);
+        st.setString(1,id);
 
         ResultSet rst = st.executeQuery();
 

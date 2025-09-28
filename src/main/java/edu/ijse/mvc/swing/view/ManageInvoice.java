@@ -4,7 +4,9 @@
  */
 package edu.ijse.mvc.swing.view;
 
+import edu.ijse.mvc.swing.controller.CalculationController;
 import edu.ijse.mvc.swing.controller.InvoiceController;
+import edu.ijse.mvc.swing.dto.CalculationDto;
 import edu.ijse.mvc.swing.dto.InvoiceDto;
 
 import javax.swing.*;
@@ -18,6 +20,8 @@ import java.util.ArrayList;
 public class ManageInvoice extends javax.swing.JPanel {
 
     private final InvoiceController invoiceController = new InvoiceController();
+    private final CalculationController calculationController = new CalculationController();
+
     /**
      * Creates new form ManageCustomer
      */
@@ -109,6 +113,11 @@ public class ManageInvoice extends javax.swing.JPanel {
             }
         ));
         detailsTabel.setRowHeight(25);
+        detailsTabel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                detailsTabelMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(detailsTabel);
 
         updateBtn.setBackground(new java.awt.Color(0, 102, 204));
@@ -307,41 +316,47 @@ public class ManageInvoice extends javax.swing.JPanel {
     private void resetBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resetBtnActionPerformed
        reset();
     }//GEN-LAST:event_resetBtnActionPerformed
-    
+
     private void calculateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_calculateBtnActionPerformed
        calculateTotalAmount();
     }//GEN-LAST:event_calculateBtnActionPerformed
 
+    private void detailsTabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_detailsTabelMouseClicked
+        searchInvoice();
+    }//GEN-LAST:event_detailsTabelMouseClicked
+
     public void calculateTotalAmount() {
+
         try {
+
+            ArrayList <CalculationDto> calculationDtos = calculationController.getAllCalculation();
+
             int units = Integer.parseInt(unitsTxt.getText().trim());
             double bill = 0;
 
-            if (units <= 60) {
-                if (units <= 30) {
-                    bill = (units * 8) + 150;
-                } else {
-                    bill = (30 * 8) + ((units - 30) * 20) + 150;
+            for(CalculationDto calculationDto : calculationDtos){
+                int from = calculationDto.getFromUnit();
+                int to = calculationDto.getToUnit();
+                double perUnit = calculationDto.getRatePerUnit();
+                double fixedPrice = calculationDto.getFixedPrice();
+
+                if(units > from){
+                    if(units > to){
+                        bill += ((to - from) * perUnit) + fixedPrice;
+                    } else {
+                        bill += ((units - from) * perUnit) + fixedPrice;
+                    }
                 }
-            } else {
-                bill = 400;
-                if (units <= 60) {
-                    bill += units * 30;
-                } else if (units <= 90) {
-                    bill += (60 * 30) + ((units - 60) * 37);
-                } else if (units <= 120) {
-                    bill += (60 * 30) + (30 * 37) + ((units - 90) * 42);
-                } else if (units <= 180) {
-                    bill += (60 * 30) + (30 * 37) + (30 * 42) + ((units - 120) * 50);
-                } else {
-                    bill += (60 * 30) + (30 * 37) + (30 * 42) + (60 * 50) + ((units - 180) * 75);
-                }
+
             }
 
             amountTxt.setText(String.valueOf(bill));
         } catch (NumberFormatException e) {
             amountTxt.setText("0");
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         }
+
     }
 
     public void reset() {
@@ -418,6 +433,22 @@ public class ManageInvoice extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this,rsp);
             reset();
             loadTable();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this,e.getMessage());
+        }
+    }
+
+    public void searchInvoice(){
+        try {
+            InvoiceDto invoiceDto = invoiceController.searchInvoice((String) detailsTabel.getValueAt(detailsTabel.getSelectedRow(),0));
+                    invoiceIDTxt.setText(invoiceDto.getId());
+                    CustomerIDTxt.setText(invoiceDto.getCustomerID());
+                    materIDTxt.setText(invoiceDto.getMeterID());
+                    startDatePicker.setDate(invoiceDto.getPeriodStart());
+                    endDatePicker.setDate(invoiceDto.getPeriodEnd());
+                    unitsTxt.setText(String.valueOf(invoiceDto.getConsumptionUnits()));
+                    amountTxt.setText(String.valueOf(invoiceDto.getTotal_amount()));
+                    statusPicker.setSelectedItem(invoiceDto.getStatus());
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this,e.getMessage());
         }

@@ -103,6 +103,11 @@ public class ManageTariff extends javax.swing.JPanel {
             }
         ));
         detailsTabel.setRowHeight(25);
+        detailsTabel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                detailsTabelMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(detailsTabel);
 
         updateBtn.setBackground(new java.awt.Color(0, 102, 204));
@@ -251,6 +256,10 @@ public class ManageTariff extends javax.swing.JPanel {
        reset();
     }//GEN-LAST:event_resetBtnActionPerformed
 
+    private void detailsTabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_detailsTabelMouseClicked
+        searchTariff();
+    }//GEN-LAST:event_detailsTabelMouseClicked
+
     public void reset() {
         tariffIDTxt.setText("");
         nameTxt.setText("");
@@ -316,6 +325,19 @@ public class ManageTariff extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this,rsp);
             reset();
             loadTable();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this,e.getMessage());
+        }
+    }
+
+    public void searchTariff(){
+        try {
+            TariffDto tariffDto = tariffController.searchTariff((String) detailsTabel.getValueAt(detailsTabel.getSelectedRow(),0));
+            tariffIDTxt.setText(tariffDto.getId());
+            nameTxt.setText(tariffDto.getName());
+            datePicker.setDate(tariffDto.getEffectiveTo());
+            datePicker2.setDate(tariffDto.getEffectiveFrom());
+            chargeTxt.setText(String.valueOf(tariffDto.getFixedCharge()));
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this,e.getMessage());
         }

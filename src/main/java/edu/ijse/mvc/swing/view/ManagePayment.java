@@ -104,6 +104,11 @@ public class ManagePayment extends javax.swing.JPanel {
             }
         ));
         detailsTabel.setRowHeight(25);
+        detailsTabel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                detailsTabelMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(detailsTabel);
 
         updateBtn.setBackground(new java.awt.Color(0, 102, 204));
@@ -253,6 +258,10 @@ public class ManagePayment extends javax.swing.JPanel {
        reset();
     }//GEN-LAST:event_resetBtnActionPerformed
 
+    private void detailsTabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_detailsTabelMouseClicked
+        searchPayment();
+    }//GEN-LAST:event_detailsTabelMouseClicked
+
     public void reset() {
         paymentIDTxt.setText("");
         invoiceTxt.setText("");
@@ -312,6 +321,19 @@ public class ManagePayment extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this,rsp);
             reset();
             loadTable();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this,e.getMessage());
+        }
+    }
+
+    public void searchPayment(){
+        try {
+            PaymentDto paymentDto = paymentController.searchPayment((String) detailsTabel.getValueAt(detailsTabel.getSelectedRow(),0));
+            paymentIDTxt.setText(paymentDto.getId());
+            invoiceTxt.setText(paymentDto.getInvoiceID());
+            paidAmountTxt.setText(String.valueOf(paymentDto.getPaidAmount()));
+            datePicker.setDate(paymentDto.getPaymentDate());
+            methodPicker.setSelectedItem(paymentDto.getPaymentDate());
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this,e.getMessage());
         }
