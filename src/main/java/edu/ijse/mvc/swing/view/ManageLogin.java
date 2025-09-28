@@ -200,6 +200,11 @@ public class ManageLogin extends javax.swing.JFrame {
             if(role == "Admin"){
                 JOptionPane.showMessageDialog(this,role+" Login Successfully");
                 new ManageMainMenu().show();
+            } else if (role == "User"){
+                JOptionPane.showMessageDialog(this,role+" Login Successfully");
+                new ManagePayment().show();
+            } else {
+                JOptionPane.showMessageDialog(this,"Invalid");
             }
 
         } catch (Exception e) {
