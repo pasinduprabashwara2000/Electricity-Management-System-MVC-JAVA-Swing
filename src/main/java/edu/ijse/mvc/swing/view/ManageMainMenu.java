@@ -250,7 +250,8 @@ public class ManageMainMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_paymentBtnActionPerformed
 
     private void logOutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logOutBtnActionPerformed
-        // TODO add your handling code here:
+        dispose();
+        new ManageLogin().show();
     }//GEN-LAST:event_logOutBtnActionPerformed
 
     private void employeeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_employeeBtnActionPerformed
