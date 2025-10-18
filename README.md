@@ -66,5 +66,5 @@ The ER diagram represents the core entities and their relationships within the s
 
 * **Database:** MySQL
 * **Backend:** Java
-* **Frontend:** JavaFX
+* **Frontend:** JavaSwing
 * **Modeling:** Draw.io
