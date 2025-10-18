@@ -68,17 +68,3 @@ The ER diagram represents the core entities and their relationships within the s
 * **Backend:** Java
 * **Frontend:** JavaFX
 * **Modeling:** Draw.io
-
----
-
-## 🤝 Contributing
-
-Pull requests are welcome! For major changes, please open an issue first to discuss what you’d like to change.
-
----
-
-## 🪪 License
-
-This project is licensed under the **MIT License** — you are free to use, modify, and distribute it with attribution.
-
----
